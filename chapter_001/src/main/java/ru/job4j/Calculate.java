@@ -6,7 +6,7 @@
 *@version 0.1
 */
 
-package ru.job4j.Calculate;
+package ru.job4j;
 
 
 
@@ -25,7 +25,7 @@ public class Calculate {
      * @return Echo plus Valentin.
      */
     public String echo(String name) {
-		String input = "Valentin Zhigalov"
+		String input = "Valentin Zhigalov";
         return "Echo, echo, echo : " + name;
     }
 }
