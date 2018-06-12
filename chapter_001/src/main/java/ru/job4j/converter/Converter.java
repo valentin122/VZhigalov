@@ -3,7 +3,7 @@
  *
  *@author Valentin Zhigalov (VAL1915@ya.ru)
  *@since 08.06.18
- *@version 0.1
+ *@version 0.2
  */
 
 package ru.job4j.converter;
@@ -12,8 +12,6 @@ package ru.job4j.converter;
  * Корвертор валюты.
  */
 public class Converter {
-
-    private int result;
 
     final static int rubToEu = 70;
     final static int rubToDol = 60;
@@ -24,8 +22,7 @@ public class Converter {
      * @return Евро.
      */
     public int rubleToEuro(int value) {
-        result = value / rubToEu;
-        return this.result;
+        return value / rubToEu;
     }
 
     /**
@@ -34,8 +31,7 @@ public class Converter {
      * @return Доллары
      */
     public int rubleToDollar(int value) {
-        result = value / rubToDol;
-        return this.result;
+        return value / rubToDol;
     }
 
     /**
@@ -45,8 +41,7 @@ public class Converter {
      */
 
     public int dollarToRubles(int value) {
-        result = value * rubToDol;
-        return this.result;
+        return value * rubToDol;
     }
 
     /**
@@ -56,8 +51,7 @@ public class Converter {
      */
 
     public int euroToRubles(int value) {
-        result = value * rubToEu;
-        return this.result;
+        return value * rubToEu;
     }
 
 
