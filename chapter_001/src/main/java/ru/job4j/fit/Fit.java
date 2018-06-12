@@ -3,7 +3,7 @@
  *
  *@author Valentin Zhigalov (VAL1915@ya.ru)
  *@since 12.06.18
- *@version 0.2
+ *@version 0.3
  */
 
 package ru.job4j.fit;
@@ -17,6 +17,7 @@ public class Fit {
      * Идеальный вес для мужщины.
      * @param height Рост.
      * @return идеальный вес.
+     * все готово
      */
 
     public double manWeight(double height) {
