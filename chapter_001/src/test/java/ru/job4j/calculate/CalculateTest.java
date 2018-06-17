@@ -19,7 +19,7 @@ import static org.junit.Assert.assertThat;
 public class CalculateTest {
 	/**
 	 *Test echo
-	 *@Test
+	 *@Test - тест
 	 */
 
 	@Test
