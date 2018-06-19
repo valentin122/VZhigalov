@@ -3,7 +3,7 @@
  *
  *@author Valentin Zhigalov (VAL1915@ya.ru)
  *@since 17.06.18
- *@version 0.1
+ *@version 0.2
  */
 
 package ru.job4j.max;
@@ -16,8 +16,7 @@ public class Max {
      * @return бОльшее из чисел.
      */
     public int max(int first, int second) {
-        int maxim = (first > second) ? first : second;
-        return maxim;
+        return (first > second) ? first : second;
     }
 
 
