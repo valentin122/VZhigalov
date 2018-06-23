@@ -20,9 +20,8 @@ public class Max {
     }
 
     public int max(int first, int second, int third) {
-        int temp = this.max(first, second);
-            int tempotery = this.max(temp, third);
-        return tempotery;
+
+        return max(max(first, second), third);
     }
 
 
