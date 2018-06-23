@@ -4,7 +4,7 @@ package ru.job4j.condition;
  *Triangle
  *
  *@author Valentin Zhigalov (VAL1915@ya.ru)
- *@since 19.06.18
+ *@since 20.06.18
  *@version 0.1
  */
 

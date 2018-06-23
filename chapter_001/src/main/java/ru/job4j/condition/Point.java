@@ -24,10 +24,10 @@ public class Point {
         // или для удоства мы создали новую переменню b и к ней присвоили переменную this.
         Point b = that;
         // сделаем вывод на консоль.
-        System.out.println("x1 = " + a.x);
-        System.out.println("y1 = " + a.y);
-        System.out.println("x2 = " + b.x);
-        System.out.println("y2 = " + b.y);
+      //  System.out.println("x1 = " + a.x);
+        //System.out.println("y1 = " + a.y);
+//      System.out.println("x2 = " + b.x);
+//        System.out.println("y2 = " + b.y);
         return Math.sqrt(Math.pow(this.x - that.x, 2) + Math.pow(this.y - that.y, 2));
 
     }
@@ -37,8 +37,8 @@ public class Point {
         Point b = new Point(2, 5);
         // сделаем вызов метода
         System.out.println("x1 = " + a.x);
-        System.out.println("y1 = " + a.y);
         System.out.println("x2 = " + b.x);
+        System.out.println("y1 = " + a.y);
         System.out.println("y2 = " + b.y);
 
         double result = a.distanceTo(b);

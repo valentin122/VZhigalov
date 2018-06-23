@@ -4,8 +4,8 @@ package ru.job4j.condition;
  *Triangle
  *
  *@author Valentin Zhigalov (VAL1915@ya.ru)
- *@since 18.06.18
- *@version 0.1
+ *@since 23.06.18
+ *@version 0.2
  */
 
 public class Triangle {
@@ -63,26 +63,8 @@ public class Triangle {
      * @return
      */
     private boolean exist(double ab, double ac, double bc) {
-        if (ab == bc + ac) {
-            return false;
+
+            return (ab < bc + ac) && (bc < ab + ac) && (ac < bc + ab);
         }
-        else if (bc == ab + ac) {
-            return false;
-        }
-        else if (ac == bc + ab) {
-            return false;
-        }
-        else if (ab == 0) {
-            return false;
-        }
-        else if (bc == 0) {
-            return false;
-        }
-        else if (ac == 0){
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+
 }
