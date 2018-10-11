@@ -16,7 +16,6 @@ public class FindLoop {
                 rst = i;
                 break;
             }
-            i++;
         }
         return rst;
     }
