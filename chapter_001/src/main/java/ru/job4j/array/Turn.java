@@ -9,6 +9,12 @@
 package ru.job4j.array;
 
 public class Turn {
+    /**
+     * method turn array
+     *
+     * @param array any int array
+     * @return turned array
+     */
     public int[] turn(int[] array) {
         for (int i = 0; i < (array.length / 2); i++) {
             int temp = array[i];
