@@ -1,5 +1,5 @@
 /**
- * ArrayChar
+ * Matrix
  *
  * @author Valentin Zhigalov (VAL1915@ya.ru)
  * @version 0.1
