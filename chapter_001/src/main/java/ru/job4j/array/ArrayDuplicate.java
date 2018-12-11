@@ -27,10 +27,7 @@ public class ArrayDuplicate {
                     j--;
                 }
             }
-
         }
         return Arrays.copyOf(array, line);
     }
-
-
 }

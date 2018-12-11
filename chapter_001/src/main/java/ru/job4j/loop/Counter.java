@@ -17,13 +17,9 @@ public class Counter {
         for (int index = start; index <= finish; index++) {
             if (index % 2 == 0) {
                 summ += index;
-
             }
         }
     return summ;
-
     }
-
-
 }
 

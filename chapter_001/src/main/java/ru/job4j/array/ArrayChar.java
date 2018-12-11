@@ -12,7 +12,7 @@ package ru.job4j.array;
  * Обертка над строкой.
  */
 public class ArrayChar {
-    private char[] data;
+        private char[] data;
 
     public ArrayChar(String line) {
         this.data = line.toCharArray();
@@ -28,15 +28,11 @@ public class ArrayChar {
         boolean result = true;
         char[] value = prefix.toCharArray();
         for (int index = 0; index < (value.length); index++) {
-
             if (data[index] != value[index]) {
                 result = false;
                 break;
             }
-
         }
         return result;
     }
-
-
 }

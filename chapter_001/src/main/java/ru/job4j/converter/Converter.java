@@ -53,6 +53,4 @@ public class Converter {
     public int euroToRubles(int value) {
         return value * RUBLESTOEURO;
     }
-
-
 }

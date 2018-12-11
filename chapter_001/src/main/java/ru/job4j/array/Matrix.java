@@ -16,7 +16,6 @@ public class Matrix {
             for (int i = 0; i < size; i++) {
                 table[index][i] = (index + 1) * (i + 1);
             }
-
         }
         return table;
     }

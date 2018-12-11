@@ -24,7 +24,6 @@ public class BubbleSort {
                     array[i + 1] = tmp;
                 }
             }
-
         }
         return array;
     }

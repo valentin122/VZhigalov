@@ -18,7 +18,6 @@ public class SortTwoArr {
      */
     public int[] merge(int[] arrayOne, int[] arrayTwo) {
         int[] mergedArray = new int[arrayOne.length + arrayTwo.length];
-
         int i = 0, j = 0;
         int mergedArrayIndex = 0;
         for (; i < arrayOne.length || j < arrayTwo.length;) {
@@ -40,6 +39,5 @@ public class SortTwoArr {
             mergedArrayIndex++;
         }
         return mergedArray;
-
     }
 }
