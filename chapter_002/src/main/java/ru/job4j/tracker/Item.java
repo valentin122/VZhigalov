@@ -8,6 +8,9 @@ public class Item {
         this.name = name;
     }
 
+    public Item(String name, String desc) {
+    }
+
 
     public void setId(String id) {
         this.id = id;
