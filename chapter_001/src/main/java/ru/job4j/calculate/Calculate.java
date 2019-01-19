@@ -18,7 +18,7 @@ public class Calculate {
 	public static void main(String[] args) {
 		System.out.println("Hello world");
 	}
-	
+
 	/**
      * Method echo.
      * @param name Valentin.

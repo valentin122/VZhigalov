@@ -19,10 +19,6 @@ public class StartUI {
     private final Input input;
     private final Tracker tracker;
 
-
-
-
-
     public StartUI(Input input, Tracker tracker){
         this.input = input;
         this.tracker = tracker;
@@ -75,12 +71,65 @@ public class StartUI {
 
     private void show(String title, Item[] items){
         System.out.println(title);
-        //добавить
+        System.out.printf("%-20s%-11s%-25s%-11s%n", "Id", "Name", "Description", "Changed");
+        System.out.println("------------------------------------------------------------------------------");
+        for (Item item : items) {
+            System.out.printf("%-20s%-11s%-25s%-11s%n",
+                    item.getId(), item.getName(), item.getDesc(), longToDate(item.getCreate()));
+        }
+        System.out.println("------------------------------------------------------------------------------");
     }
+
+    private String longToDate(long date)
 
     private void showAllItems(){
         String title = "------------------------------ Show all requests -----------------------------";
         show(title, tracker.findAll());
+    }
+    private void editItem(){
+        String title = "------------------------------ Edit some request ------------------------------";
+        show(title, tracker.findAll());
+        String id = input.ask("Enter id request");
+        String name = input.ask("Enter request name");
+        String desc = input.ask("Enter request description");
+        Item item = new Item (name, desc, System.currentTimeMillis());
+        if (tracker.replace(id, item)){
+            System.out.printf("Request where id %s have changed%n", id);
+        } else {
+            System.out.printf("Request where id %s haven't changed%n", id);
+        }
+    }
+    private void deleteItem() {
+        String title = "----------------------------- Delete some request -----------------------------";
+        show(title, tracker.findAll());
+        String id = input.ask("Enter id request");
+        if(tracker.delete()){
+            System.out.printf("Request deleted");
+        } else {
+            System.out.printf("Can't deleted request");
+        }
+    }
+    private void findById() {
+        String title = "----------------------------- Find by Id -------------------------------------";
+        System.out.println();
+        String id = input.ask("Enter id request");
+        Item[] item = {tracker.findById(id)};
+        if (item[0] == null) {
+            System.out.printf("Request where id %s haven't found%n", id);
+        } else {
+            show(title, item);
+        }
+    }
+    private void findByName(){
+        String title = "-------------------------------- Find by name --------------------------------";
+        System.out.println();
+        String name = input.ask("Enter name request");
+        Item[] item = tracker.findByName(name);
+        if(item.length == 0){
+            System.out.printf("Request where name %s haven't found", name);
+        } else {
+            show(title, item);
+        }
     }
 
     /**
