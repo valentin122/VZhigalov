@@ -11,6 +11,8 @@ public class Item {
     }
 
     public Item(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
     }
 
 
@@ -36,5 +38,9 @@ public class Item {
 
     public String getDesc() {
         return desc;
+    }
+
+    public long getCreate() {
+        return create;
     }
 }

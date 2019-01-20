@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.text.SimpleDateFormat;
+
 /**
  * StartUI
  *
@@ -130,6 +132,11 @@ public class StartUI {
         } else {
             show(title, item);
         }
+    }
+
+    private String longToDate(long date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd,MM,yy");
+        return sdf.format(new date(date));
     }
 
     /**
