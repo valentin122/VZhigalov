@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * StartUI
@@ -82,8 +83,6 @@ public class StartUI {
         System.out.println("------------------------------------------------------------------------------");
     }
 
-    private String longToDate(long date)
-
     private void showAllItems(){
         String title = "------------------------------ Show all requests -----------------------------";
         show(title, tracker.findAll());
@@ -105,7 +104,7 @@ public class StartUI {
         String title = "----------------------------- Delete some request -----------------------------";
         show(title, tracker.findAll());
         String id = input.ask("Enter id request");
-        if(tracker.delete()){
+        if(tracker.delete(id)){
             System.out.printf("Request deleted");
         } else {
             System.out.printf("Can't deleted request");
@@ -136,7 +135,7 @@ public class StartUI {
 
     private String longToDate(long date) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd,MM,yy");
-        return sdf.format(new date(date));
+        return sdf.format(new Date(date));
     }
 
     /**

@@ -32,7 +32,7 @@ public class Item {
         return name;
     }
 
-    public String setDesc(String desc){
+    public void setDesc(String desc){
         this.desc = desc;
     }
 
