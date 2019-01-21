@@ -24,7 +24,7 @@ public class Item {
         return id;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -32,7 +32,7 @@ public class Item {
         return name;
     }
 
-    public void setDesc(String desc){
+    public void setDesc(String desc) {
         this.desc = desc;
     }
 

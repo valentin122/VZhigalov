@@ -21,7 +21,7 @@ class Tracker {
      * @param item новая заявка
      */
 
-    public Item add(Item item){
+    public Item add(Item item) {
         item.setId(this.generateId());
         this.items[this.position++] = item;
         return item;
@@ -36,7 +36,7 @@ class Tracker {
         return String.valueOf(System.currentTimeMillis() + rn);
     }
 
-    public boolean replace(String id, Item item){
+    public boolean replace(String id, Item item) {
         boolean result = false;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
@@ -49,7 +49,7 @@ class Tracker {
         return result;
     }
 
-    public boolean delete(String id){
+    public boolean delete(String id) {
         boolean result = false;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
@@ -62,11 +62,11 @@ class Tracker {
         return result;
     }
 
-    public Item[] findAll(){
+    public Item[] findAll() {
         return Arrays.copyOf(items, position);
     }
 
-    public Item[] findByName(String name){
+    public Item[] findByName(String name) {
         int count = 0;
         Item[] result = new Item[position];
         for (int i = 0; i < position; i++) {
@@ -77,7 +77,7 @@ class Tracker {
         return Arrays.copyOf(result, count);
     }
 
-    public Item findById(String id){
+    public Item findById(String id) {
         Item result = null;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {

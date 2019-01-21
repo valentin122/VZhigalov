@@ -22,28 +22,28 @@ public class StartUI {
     private final Input input;
     private final Tracker tracker;
 
-    public StartUI(Input input, Tracker tracker){
+    public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
-    public void  init(){
+    public void  init() {
         boolean exit = false;
-        while (!exit){
+        while (!exit) {
             this.showMenu();
             String answer = this.input.ask("Please, select a menu item:");
-            if(ADD.equals(answer)){
+            if (ADD.equals(answer)) {
                 this.createItem();
-            } else if (SHOW.equals(answer)){
+            } else if (SHOW.equals(answer)) {
                 this.showAllItems();
-            } else if (EDIT.equals(answer)){
+            } else if (EDIT.equals(answer)) {
                 this.editItem();
-            } else if (DELETE.equals(answer)){
+            } else if (DELETE.equals(answer)) {
                 this.deleteItem();
-            } else if (FIND_BY_ID.equals(answer)){
+            } else if (FIND_BY_ID.equals(answer)) {
                 this.findById();
-            } else if (FIND_BY_NAME.equals(answer)){
+            } else if (FIND_BY_NAME.equals(answer)) {
                 this.findByName();
-            } else if (EXIT.equals(answer)){
+            } else if (EXIT.equals(answer)) {
                 exit = true;
             }
         }
@@ -72,7 +72,7 @@ public class StartUI {
         System.out.println("------------ Added new request with getId : " + item.getId() + "-----------");
     }
 
-    private void show(String title, Item[] items){
+    private void show(String title, Item[] items) {
         System.out.println(title);
         System.out.printf("%-20s%-11s%-25s%-11s%n", "Id", "Name", "Description", "Changed");
         System.out.println("------------------------------------------------------------------------------");
@@ -83,18 +83,18 @@ public class StartUI {
         System.out.println("------------------------------------------------------------------------------");
     }
 
-    private void showAllItems(){
+    private void showAllItems() {
         String title = "------------------------------ Show all requests -----------------------------";
         show(title, tracker.findAll());
     }
-    private void editItem(){
+    private void editItem() {
         String title = "------------------------------ Edit some request ------------------------------";
         show(title, tracker.findAll());
         String id = input.ask("Enter id request");
         String name = input.ask("Enter request name");
         String desc = input.ask("Enter request description");
-        Item item = new Item (name, desc, System.currentTimeMillis());
-        if (tracker.replace(id, item)){
+        Item item = new Item(name, desc, System.currentTimeMillis());
+        if (tracker.replace(id, item)) {
             System.out.printf("Request where id %s have changed%n", id);
         } else {
             System.out.printf("Request where id %s haven't changed%n", id);
@@ -104,7 +104,7 @@ public class StartUI {
         String title = "----------------------------- Delete some request -----------------------------";
         show(title, tracker.findAll());
         String id = input.ask("Enter id request");
-        if(tracker.delete(id)){
+        if (tracker.delete(id)) {
             System.out.printf("Request deleted");
         } else {
             System.out.printf("Can't deleted request");
@@ -121,12 +121,12 @@ public class StartUI {
             show(title, item);
         }
     }
-    private void findByName(){
+    private void findByName() {
         String title = "-------------------------------- Find by name --------------------------------";
         System.out.println();
         String name = input.ask("Enter name request");
         Item[] item = tracker.findByName(name);
-        if(item.length == 0){
+        if (item.length == 0) {
             System.out.printf("Request where name %s haven't found", name);
         } else {
             show(title, item);

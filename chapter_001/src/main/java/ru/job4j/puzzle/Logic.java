@@ -69,7 +69,7 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
-        for (int goriz = 0; goriz < table.length; goriz++){
+        for (int goriz = 0; goriz < table.length; goriz++) {
             int sumVert = 0, sumGoriz = 0;
             for (int vert = 0; vert < table.length; vert++) {
                 if (table[vert][goriz] == 1) {
