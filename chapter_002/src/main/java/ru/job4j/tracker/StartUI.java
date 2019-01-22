@@ -26,6 +26,7 @@ public class StartUI {
         this.input = input;
         this.tracker = tracker;
     }
+    Exit exitProgram = new Exit();
     public void  init() {
         boolean exit = false;
         while (!exit) {
@@ -45,6 +46,7 @@ public class StartUI {
                 this.findByName();
             } else if (EXIT.equals(answer)) {
                 exit = true;
+                exitProgram.execute();
             }
         }
     }
@@ -145,7 +147,13 @@ public class StartUI {
     public static void main(String[] args) {
         new StartUI(new ConsoleInput(), new Tracker()).init();
     }
-
-
+}
+class Exit {
+    public int key() {
+        return 0;
+    }
+    public void execute() {
+        System.out.println("The selected menu item 0. Exit. Goodbye!");
+    }
 }
 
