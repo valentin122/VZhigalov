@@ -33,6 +33,8 @@ public class PaintTest {
         PrintStream stdout = System.out;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
+        Paint paint = new Paint();
+        paint.draw(new Triangle());
         assertThat(
                 out.toString(),
                 is(
