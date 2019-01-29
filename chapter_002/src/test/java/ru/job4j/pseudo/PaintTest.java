@@ -1,6 +1,5 @@
 package ru.job4j.pseudo;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -13,9 +12,10 @@ public class PaintTest {
         PrintStream stdout = System.out;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        new Paint().draw(new Square());
+        Paint paint = new Paint();
+        paint.draw(new Square());
         assertThat(
-                new String(out.toByteArray()),
+               out.toString(),
                 is(
                         new StringBuilder()
                                 .append("++++")
@@ -34,7 +34,7 @@ public class PaintTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         assertThat(
-                new String(out.toByteArray()),
+                out.toString(),
                 is(
                         new StringBuilder()
                 .append("   +   ")
