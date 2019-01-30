@@ -52,9 +52,38 @@ public class StartUITest {
         new StartUI(new StubInput(action3), tracker).init();
         assertThat(tracker.findAll().length, is(2));
     }
-    /*@Test
+    @Test
     public void whenShowAll() {
         String[] action = {"1", "6"};
-
-    }*/
+        StringBuilder expected = new StringBuilder();
+        for(Item item : tracker.findAll()) {
+            expected.append(
+                    String.format("%-20s%-11s%-25s%n",
+                            item.getId(), item.getName(), item.getDesc()));
+        }
+        new StartUI(new StubInput(action), tracker).init();
+        assertThat(new String(out.toByteArray()).contains(expected), is(true));
+    }
+    @Test
+    public void whenFindByIdThenShow() {
+        String id = tracker.findAll()[3].getId();
+        String[] action = {"4", id, "6"};
+        Item item = tracker.findById(id);
+        String expected = String.format("%-20s%-11s%-25s%n", item.getId(),
+                item.getName(), item.getDesc());
+        new StartUI(new StubInput(action), tracker).init();
+        assertThat(out.toString().contains(expected), is(true));
+    }
+    @Test
+    public void whenFindByNameThenShow() {
+        String id = tracker.findAll()[3].getId();
+        String[] action = {"5", "test name", "6"};
+        StringBuilder expected = new StringBuilder();
+        for(Item item : tracker.findByName("test name")) {
+            expected.append(
+                    String.format("%-20s%-11s%-25s%n", item.getId(), item.getName(), item.getDesc()));
+        }
+        new StartUI(new StubInput(action), tracker).init();
+        assertThat(out.toString().contains(expected), is(true));
+    }
 }
