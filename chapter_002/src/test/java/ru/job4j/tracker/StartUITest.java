@@ -36,7 +36,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         String[] action1 = {"0", "test name", "desc", "6"};
         new StartUI(new StubInput(action1), tracker).init();
-        assertThat (tracker.findAll()[0].getName(), is("test name"));
+        assertThat(tracker.findAll()[0].getName(), is("test name"));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class StartUITest {
 
         String[] action2 = {"2", tracker.findAll()[0].getId(), "changed name", "changed description", "6"};
         new StartUI(new StubInput(action2), tracker).init();
-        assertThat (tracker.findAll()[0].getName(), is("changed name"));
+        assertThat(tracker.findAll()[0].getName(), is("changed name"));
     }
     @Test
     public void whenDeleteThenTrackerEmpty() {
@@ -56,7 +56,7 @@ public class StartUITest {
     public void whenShowAll() {
         String[] action = {"1", "6"};
         StringBuilder expected = new StringBuilder();
-        for(Item item : tracker.findAll()) {
+        for (Item item : tracker.findAll()) {
             expected.append(
                     String.format("%-20s%-11s%-25s%n",
                             item.getId(), item.getName(), item.getDesc()));
@@ -78,8 +78,9 @@ public class StartUITest {
     public void whenFindByNameThenShow() {
         String id = tracker.findAll()[3].getId();
         String[] action = {"5", "test name", "6"};
+        //Item item = tracker.findByName();
         StringBuilder expected = new StringBuilder();
-        for(Item item : tracker.findByName("test name")) {
+        for (Item item : tracker.findByName("test name")) {
             expected.append(
                     String.format("%-20s%-11s%-25s%n", item.getId(), item.getName(), item.getDesc()));
         }
