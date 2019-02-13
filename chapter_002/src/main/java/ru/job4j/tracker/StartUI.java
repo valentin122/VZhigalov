@@ -1,7 +1,9 @@
 package ru.job4j.tracker;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * StartUI
@@ -12,6 +14,8 @@ import java.util.Date;
  */
 
 public class StartUI {
+    MenuTracker menuTracker = new MenuTracker();
+    private int range = menuTracker.getActionsLength();
     private final Input input;
     private final Tracker tracker;
 
@@ -23,10 +27,14 @@ public class StartUI {
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<>();
         menu.fillActions();
+        for (int i = 0; i < menu.getActionsLength(); i++) {
+            range.add(i);
+        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select(input.ask("select:", range));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
@@ -40,15 +48,15 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
 class Exit {
     public int key() {
-        return 0;
+        return 6;
     }
     public void execute() {
-        System.out.println("The selected menu item 0. Exit. Goodbye!");
+        System.out.println("The selected menu item 6. Exit. Goodbye!");
     }
 }
 
