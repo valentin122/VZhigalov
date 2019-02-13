@@ -10,7 +10,7 @@ public class FindAllItem implements UserAction {
     public void execute(Input input, Tracker tracker) {
         System.out.println("----------- Show all items ------------");
         for (Item item : tracker.findAll()) {
-            System.out.println(String.format("Item's id: " + item.getId(), "Item's name: " + item.getName()));
+            System.out.println(item.toString());
         }
     }
 

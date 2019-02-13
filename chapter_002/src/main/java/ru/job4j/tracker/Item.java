@@ -43,4 +43,10 @@ public class Item {
     public long getCreate() {
         return create;
     }
+
+    @Override
+    public String toString() {
+        return "Item's id: " + getId() + "Item's name: " + getName();
+    }
+
 }
