@@ -37,14 +37,14 @@ public class StubInput implements Input {
         return this.value[this.position++];
     }
 
-    @Override
-    public int ask(String question, List<Integer> range) {
+  /*  @Override
+      public int ask(String question, List<Integer> range) {
         //throw new UnsupportedOperationException("Unsupported operation");
-        return -2;
+        return Integer.parseInt(this.value[this.position++]);
     }
-
+*/
     @Override
     public int ask(String question, int[] range) {
-        return 0;
+        return Integer.valueOf(this.value[this.position++]);
     }
 }

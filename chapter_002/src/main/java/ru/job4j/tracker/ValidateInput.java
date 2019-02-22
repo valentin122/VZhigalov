@@ -4,12 +4,14 @@ import java.util.List;
 
 public class ValidateInput extends ConsoleInput {
 
-    public int ask(String question, List<Integer> range) {
+    public int ask(String question, int[] range) {
         boolean invalid = true;
         int value = -1;
         do {
             try {
+                invalid = false;
                 return super.ask(question, range);
+
             } catch (MenuOutException moe) {
               //  moe.printStackTrace();
                 System.out.println("Please select key from menu.");

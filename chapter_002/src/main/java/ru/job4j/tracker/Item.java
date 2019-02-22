@@ -46,7 +46,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item's id: " + getId() + "Item's name: " + getName();
+        return "Item's id: " + getId() + "Item's name: " + getName() + "Item's description" + getDesc();
     }
 
 }

@@ -27,10 +27,10 @@ public class StartUI {
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        List<Integer> range = new ArrayList<>();
+        int[] range = new int[menu.getActionsLength()];
         menu.fillActions();
         for (int i = 0; i < menu.getActionsLength(); i++) {
-            range.add(i);
+            range[i] = i;
         }
         do {
             menu.show();
@@ -53,6 +53,7 @@ public class StartUI {
 }
 class Exit {
     public int key() {
+        execute();
         return 6;
     }
     public void execute() {
