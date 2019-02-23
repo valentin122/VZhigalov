@@ -69,7 +69,7 @@ public class StartUITest {
         }
         new StartUI(new StubInput(action), tracker).init();
 
-        assertThat(new String(out.toByteArray()).contains(expected), is(true));
+        assertThat(new String(out.toByteArray()), is(expected.toString()));
         //, is(expected.toString()));
     }
     @Test
