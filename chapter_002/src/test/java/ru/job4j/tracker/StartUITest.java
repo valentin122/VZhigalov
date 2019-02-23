@@ -21,8 +21,8 @@ public class StartUITest {
     public void init() {
 
         tracker.add(new Item("test1", "desc1"));
-       // tracker.add(new Item("test2", "desc2"));
-        //tracker.add(new Item("test3", "desc3"));
+        tracker.add(new Item("test2", "desc2"));
+        tracker.add(new Item("test3", "desc3"));
         System.setOut(new PrintStream(this.out));
     }
 
@@ -56,13 +56,14 @@ public class StartUITest {
     public void whenShowAll() {
         String[] action = {"1", "y"};
         StringBuilder expected = new StringBuilder();
-        expected.append("0. Add new Item.\\r\\n" +
-                "1. Show all items\\r\\n" +
-                "2. UpdateItem\\r\\n" +
-                "3. Delete item\\r\\n" +
-                "4. Find item by id : \\r\\n" +
-                "5. Find by name\\r\\n" +
-                "----------- Show all items ------------\\r\\n");
+        expected.append("0. Add new Item.")
+                .append(System.lineSeparator() + "1. Show all items")
+                .append(System.lineSeparator() + "2. UpdateItem")
+                .append(System.lineSeparator() + "3. Delete item")
+                .append(System.lineSeparator() + "4. Find item by id : ")
+                .append(System.lineSeparator() + "5. Find by name")
+                .append(System.lineSeparator() + "----------- Show all items ------------")
+                .append(System.lineSeparator());
         for (Item item : tracker.findAll()) {
             expected.append(
                     String.format("%-20s%-11s%-25s%n", item.getId(), item.getName(), item.getDesc()));
@@ -70,7 +71,6 @@ public class StartUITest {
         new StartUI(new StubInput(action), tracker).init();
 
         assertThat(new String(out.toByteArray()), is(expected.toString()));
-        //, is(expected.toString()));
     }
     @Test
     public void whenFindByIdThenShow() {
