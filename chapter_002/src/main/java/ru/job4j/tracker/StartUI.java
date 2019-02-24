@@ -1,9 +1,7 @@
 package ru.job4j.tracker;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * StartUI
@@ -48,13 +46,13 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
 class Exit {
-    public int key() {
+    public String key() {
         execute();
-        return 6;
+        return "y";
     }
     public void execute() {
         System.out.println("The selected menu item 6. Exit. Goodbye!");
