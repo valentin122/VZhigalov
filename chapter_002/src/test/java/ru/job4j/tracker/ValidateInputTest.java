@@ -44,4 +44,17 @@ public class ValidateInputTest {
                 )
         );
     }
+    @Test
+    public void whenInvalidInputTwo() {
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"5", "6"})
+        );
+        input.ask("0", new int[] {0, 1, 2});
+        assertThat(
+                this.mem.toString(),
+                is(
+                        String.format("Please select key from menu.%n")
+                )
+        );
+    }
 }
