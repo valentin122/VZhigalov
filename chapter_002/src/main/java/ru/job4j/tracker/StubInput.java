@@ -18,8 +18,8 @@ public class StubInput implements Input {
      */
     private int position;
 
+
     public StubInput(final String[] value) {
-        this.position++;
         this.value = value;
     }
 
@@ -36,14 +36,22 @@ public class StubInput implements Input {
         return this.value[this.position++];
     }
 
-  /*  @Override
-      public int ask(String question, List<Integer> range) {
-        //throw new UnsupportedOperationException("Unsupported operation");
-        return Integer.parseInt(this.value[this.position++]);
-    }
-*/
     @Override
     public int ask(String question, int[] range) {
+       // ConsoleInput
+//        MenuTracker menu = new MenuTracker();
+//        boolean exist = false;
+//        for (int i = 0; i < menu.getActionsLength(); i++) {
+//            range[i] = i;
+//            if(i = Integer.valueOf(value)){
+//                exist = true;
+//            }
+//        }
+//        if (!exist) {
+//            throw new MenuOutException("out of menu range");
+//        }
+//        return Integer.valueOf(this.value[this.position++]);
+
         return Integer.valueOf(this.value[this.position++]);
     }
 }

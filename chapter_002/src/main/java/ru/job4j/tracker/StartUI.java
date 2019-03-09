@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class StartUI {
     MenuTracker menuTracker = new MenuTracker();
-    private int range = menuTracker.getActionsLength();
+    public int rangeMenu = menuTracker.getActionsLength();
     private final Input input;
     private final Tracker tracker;
 
@@ -25,7 +25,7 @@ public class StartUI {
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        int[] range = new int[menu.getActionsLength()];
+        int[] range = new int[rangeMenu];
         menu.fillActions();
         for (int i = 0; i < menu.getActionsLength(); i++) {
             range[i] = i;

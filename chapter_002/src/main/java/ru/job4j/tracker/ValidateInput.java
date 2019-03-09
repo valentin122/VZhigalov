@@ -10,7 +10,7 @@ public class ValidateInput implements Input {
 
     @Override
     public String ask(String question) {
-        return String.valueOf(this.input);
+        return String.valueOf(this.input.ask(question));
     }
 
     @Override

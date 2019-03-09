@@ -44,16 +44,28 @@ public class ValidateInputTest {
                 )
         );
     }
+
     @Test
     public void whenInvalidInputTwo() {
-        ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"5", "6"})
-        );
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"5", "6"}));
         input.ask("0", new int[] {0, 1, 2});
         assertThat(
                 this.mem.toString(),
+                is(String.format("Please select key from menu.%n"))
+        );
+    }
+
+    @Test
+    public void whenInvalidInput2() {
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"invalid", "y"})
+        );
+        // input.ask("Enter", new int[] {1});
+        new StartUI(input, new Tracker()).init();
+        assertThat(
+                this.mem.toString(),
                 is(
-                        String.format("Please select key from menu.%n")
+                        String.format("Please enter validate data again.%n")
                 )
         );
     }

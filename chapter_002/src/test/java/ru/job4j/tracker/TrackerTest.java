@@ -36,7 +36,6 @@ public class TrackerTest {
         tracker.add(item2);
         tracker.delete(item1.getId());
         assertThat(tracker.findById(item1.getId()), is(nullValue()));
-        //assertThat(tracker.findById(item2.getId()).getName(), is("test2"));
     }
     @Test
     public void whenFindByNameThenName() {
