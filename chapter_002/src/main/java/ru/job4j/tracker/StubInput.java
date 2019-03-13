@@ -38,20 +38,15 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, int[] range) {
-       // ConsoleInput
-//        MenuTracker menu = new MenuTracker();
-//        boolean exist = false;
-//        for (int i = 0; i < menu.getActionsLength(); i++) {
-//            range[i] = i;
-//            if(i = Integer.valueOf(value)){
-//                exist = true;
-//            }
-//        }
-//        if (!exist) {
-//            throw new MenuOutException("out of menu range");
-//        }
-//        return Integer.valueOf(this.value[this.position++]);
-
+        boolean exist = false;
+        for (int i : range) {
+            if(i == Integer.valueOf(question)){
+                exist = true;
+            }
+        }
+        if (!exist) {
+            throw new MenuOutException("out of menu range");
+        }
         return Integer.valueOf(this.value[this.position++]);
     }
 }
