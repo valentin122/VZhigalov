@@ -39,8 +39,9 @@ public class StubInput implements Input {
     @Override
     public int ask(String question, int[] range) {
         boolean exist = false;
+        int key = Integer.parseInt(this.value[position]);
         for (int i : range) {
-            if(i == Integer.valueOf(question)){
+            if(i == key) {
                 exist = true;
             }
         }

@@ -13,7 +13,7 @@ public class ConsoleInput implements Input {
 
     @Override
     public int ask(String question, int[] range) throws MenuOutException {
-        int key = Integer.valueOf(this.ask(question));
+        int key = Integer.valueOf(question);
         boolean exist = false;
         for (int value : range) {
             if (value == key) {
@@ -26,10 +26,4 @@ public class ConsoleInput implements Input {
         }
         return key;
     }
-
-   /* @Override
-    public int ask(String question, List<Integer> range) {
-        return 0;
-    }
-*/
 }
