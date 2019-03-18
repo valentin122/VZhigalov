@@ -10,23 +10,23 @@ public class ValidateInput implements Input {
 
     @Override
     public String ask(String question) {
-        return String.valueOf(this.input.ask(question));
+        return this.input.ask(question);
     }
 
     @Override
     public int ask(String question, int[] range) {
-        boolean valid = true;
+        boolean valid = false;
         int value = -1;
         do {
             try {
                 value = this.input.ask(question, range);
-                valid = false;
+                valid = true;
             } catch (MenuOutException moe) {
                 System.out.println("Please select key from menu.");
             } catch (NumberFormatException nfe) {
                 System.out.println("Please enter validate data again.");
             }
-        } while (valid);
+        } while (!valid);
         return value;
     }
 }
