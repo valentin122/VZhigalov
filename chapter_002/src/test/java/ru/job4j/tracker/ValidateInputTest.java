@@ -47,8 +47,8 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInputTwo() {
-        ValidateInput input = new ValidateInput(new StubInput(new String[] {"10", "1"}));
-        input.ask("Enter", new int[] {1});
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"y10", "11"}));
+        input.ask("12", new int[] {1});
         assertThat(
                 this.mem.toString(),
                 is(String.format("Please select key from menu.%n"))
