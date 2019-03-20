@@ -41,7 +41,7 @@ public class StubInput implements Input {
         boolean exist = false;
         int key = Integer.valueOf(this.ask(question));
         for (int i : range) {
-            if(i == key) {
+            if (i == key) {
                 exist = true;
                 break;
             }
