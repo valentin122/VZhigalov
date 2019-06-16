@@ -15,14 +15,18 @@ public class PriorityQueue {
         if (tasks.size() == 0) {
             tasks.add(task);
         } else {
-            for (int i = 0; i < tasks.size(); i++) {
-                Task taskTemp = tasks.get(i);
+            int size = tasks.size();
+            Task taskTemp;
+            for (int i = 0; i < size; i++) {
+                taskTemp = tasks.get(i);
                 if (task.getPriority() <= taskTemp.getPriority()) {
                     tasks.add(i, task);
-                    i++;
                     break;
+                } else if(i == (size - 1)) {
+                    tasks.add(task);
                 }
             }
+
         }
     }
 
