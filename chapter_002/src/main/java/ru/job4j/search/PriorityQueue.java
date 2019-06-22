@@ -1,6 +1,7 @@
 package ru.job4j.search;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
@@ -13,9 +14,10 @@ public class PriorityQueue {
      */
     public void put(Task task) {
         int countIndexInsert = tasks.size();
-        for (int i = 0; i < countIndexInsert; i++) {
-            if (task.getPriority() <= tasks.get(i).getPriority()) {
-                countIndexInsert = i;
+        ListIterator<Task> listIterator = tasks.listIterator();
+        while (listIterator.hasNext()) {
+            if (task.getPriority() <= listIterator.next().getPriority()) {
+                countIndexInsert = listIterator.previousIndex();
                 break;
             }
         }
