@@ -10,11 +10,16 @@ public class ConvertMatrix2List {
             for (int cell : rows)
                 list.add(cell);
         }
-           /* for (int i = 0; i < array.length; i++) {
-                for (int j = 0; j < array[0].length; j++) {
-                    list.add(array[i][j]);
-                }
-            }*/
         return list;
+    }
+
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> result = new ArrayList<>();
+        for (int[] arr : list) {
+            for (int element : arr) {
+                result.add(element);
+            }
+        }
+        return result;
     }
 }
