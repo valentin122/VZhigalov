@@ -6,13 +6,11 @@ public class SortUser {
     public Set<User> sort(List<User> users) {
        Set<User> sorted = new TreeSet<>();
        users.sort(new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-
-                return Integer.compare(o1.age, o2.age);
-            }
+           @Override
+           public int compare(User o1, User o2) {
+               return o1.compareTo(o2);
+           }
        });
-       sorted.addAll(users);
        return sorted;
     }
     public List<User> sortNameLength (List<User> users) {
