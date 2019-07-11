@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -25,10 +26,10 @@ public class StartUI {
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        int[] range = new int[rangeMenu];
+        ArrayList<Integer> range = new ArrayList<>(rangeMenu);
         menu.fillActions();
         for (int i = 0; i < menu.getActionsLength(); i++) {
-            range[i] = i;
+            range.set(i, i);
         }
         do {
             menu.show();

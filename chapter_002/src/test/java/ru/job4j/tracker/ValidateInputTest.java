@@ -6,6 +6,10 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -21,6 +25,7 @@ public class ValidateInputTest {
     private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
     private final PrintStream out = System.out;
 
+
     @Before
     public void loadMem() {
         System.setOut(new PrintStream(this.mem));
@@ -33,10 +38,12 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInput() {
+        ArrayList<String> invalid = new ArrayList<>();
+        invalid.add("invalid");
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"invalid", "1"})
+                new StubInput(invalid)
         );
-        input.ask("1", new int[] {1});
+        input.ask("2", (new ArrayList(Arrays.asList(1))));
         assertThat(
                 this.mem.toString(),
                 is(
@@ -47,10 +54,14 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInputTwo() {
+        ArrayList<String> invalid = new ArrayList<>();
+        invalid.add("10");
+        invalid.add("1");
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"10", "1"})
+
+                new StubInput(invalid)
         );
-        input.ask("1", new int[] {1});
+        input.ask("1", new ArrayList<Integer>(1));
         assertThat(
                 this.mem.toString(),
                 is(
