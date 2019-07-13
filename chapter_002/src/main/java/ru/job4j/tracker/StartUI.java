@@ -17,24 +17,25 @@ public class StartUI {
     public int rangeMenu = menuTracker.getActionsLength();
     private final Input input;
     private final Tracker tracker;
+     protected boolean exit = false;
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
-    Exit exitProgram = new Exit();
+    //Exit exitProgram = new Exit();
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         ArrayList<Integer> range = new ArrayList<>(rangeMenu);
         menu.fillActions();
-        for (int i = 0; i < menu.getActionsLength(); i++) {
-            range.set(i, i);
+        for (int i = 0; i < rangeMenu; i++) {
+            range.add(i);
         }
         do {
             menu.show();
             menu.select(input.ask("select:", range));
-        } while (!"y".equals(this.input.ask("Exit?(y): ")));
+        } while (!"6".equals(this.input.ask("Exit?(6): ")));
     }
 
     private String longToDate(long date) {
@@ -50,13 +51,21 @@ public class StartUI {
         new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
-class Exit {
-    public String key() {
-        execute();
-        return "y";
+class Exit implements UserAction {
+    private boolean exit = true;
+    public int key() {
+        return 6;
     }
-    public void execute() {
-        System.out.println("The selected menu item 6. Exit. Goodbye!");
+
+    @Override
+    public void execute(Input input, Tracker tracker) {
+        System.out.println("Selected exit. Goodbye!");
+
+    }
+
+    @Override
+    public String info() {
+        return "6. Exit";
     }
 }
 

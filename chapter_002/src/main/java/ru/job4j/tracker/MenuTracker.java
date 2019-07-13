@@ -3,7 +3,7 @@ package ru.job4j.tracker;
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    public UserAction[] actions = new UserAction[6];
+    public UserAction[] actions = new UserAction[7];
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -11,7 +11,6 @@ public class MenuTracker {
     }
 
     public MenuTracker() {
-
     }
 
     public void fillActions() {
@@ -21,6 +20,7 @@ public class MenuTracker {
         this.actions[3] = new DeleteItem();
         this.actions[4] = new FindById();
         this.actions[5] = new FindByNameItem();
+        this.actions[6] = new Exit();
     }
 
     public void show() {
