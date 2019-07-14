@@ -37,9 +37,9 @@ public class ValidateInputTest {
     }
 
     @Test
-    public void whenInvalidInput() {
+    public void whenValidInput() {
         ArrayList<String> invalid = new ArrayList<>();
-        invalid.add("invalid");
+        invalid.add("1");
         ValidateInput input = new ValidateInput(
                 new StubInput(invalid)
         );
@@ -47,21 +47,21 @@ public class ValidateInputTest {
         assertThat(
                 this.mem.toString(),
                 is(
-                        String.format("Please enter validate data again.%n")
+                        String.format("")
                 )
         );
     }
 
     @Test
-    public void whenInvalidInputTwo() {
+    public void whenInvalidInput() {
         ArrayList<String> invalid = new ArrayList<>();
-        invalid.add("10");
         invalid.add("1");
+        invalid.add("11");
         ValidateInput input = new ValidateInput(
 
                 new StubInput(invalid)
         );
-        input.ask("1", new ArrayList<Integer>(1));
+        input.ask("1",  (new ArrayList(Arrays.asList(11))));
         assertThat(
                 this.mem.toString(),
                 is(

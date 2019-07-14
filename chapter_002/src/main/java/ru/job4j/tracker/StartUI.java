@@ -60,7 +60,6 @@ class Exit implements UserAction {
     @Override
     public void execute(Input input, Tracker tracker) {
         System.out.println("Selected exit. Goodbye!");
-
     }
 
     @Override
