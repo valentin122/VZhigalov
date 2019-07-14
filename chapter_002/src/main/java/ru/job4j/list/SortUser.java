@@ -8,7 +8,7 @@ public class SortUser {
        sorted.addAll(users);
        return sorted;
     }
-    public List<User> sortNameLength (List<User> users) {
+    public List<User> sortNameLength(List<User> users) {
         List<User> sortedByNameLength = new ArrayList<>();
         users.sort(new Comparator<User>() {
             @Override
@@ -19,7 +19,7 @@ public class SortUser {
         sortedByNameLength.addAll(users);
         return sortedByNameLength;
     }
-    public List<User> sortByAllFields (List<User> users) {
+    public List<User> sortByAllFields(List<User> users) {
         users.sort(new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {

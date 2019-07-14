@@ -1,6 +1,6 @@
 package ru.job4j.list;
 
-public class User implements Comparable <User>{
+public class User implements Comparable<User> {
     public int id;
     public String name;
     public String city;

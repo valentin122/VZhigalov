@@ -12,13 +12,13 @@ public class UserConvertTest {
     public void when3UsersthenHash() {
         UserConvert users = new UserConvert();
         List<User> list = new ArrayList<>();
-        list.add(new User(1, "Max", "Krasnodar"));
-        list.add(new User(3, "Venia", "Moscow"));
-        list.add(new User(2, "Denis", "Sochi"));
+        list.add(new User(1, "Max", 21, "Moscow"));
+        list.add(new User(3, "Venia", 20, "Sochi"));
+        list.add(new User(2, "Denis", 25, "Voronezh"));
 
         HashMap<Integer, User> result = users.process(list);
         String test = result.get(2).city;
-        String expect = "Sochi";
+        String expect = "Voronezh";
         assertThat(test, is(expect));
     }
 }

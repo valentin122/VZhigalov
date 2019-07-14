@@ -25,7 +25,7 @@ public class ConvertMatrix2ListTest {
     @Test
     public void whenUnite2Lists() {
         ConvertMatrix2List convert2ListToOne = new ConvertMatrix2List();
-        List<int []> list = new ArrayList<>();
+        List<int[]> list = new ArrayList<>();
         list.add(new int[]{1, 2});
         list.add(new int[]{3, 4, 5, 6});
         List<Integer> result = convert2ListToOne.convert(list);
