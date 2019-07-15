@@ -19,6 +19,7 @@ public class ValidateInput implements Input {
     public int ask(String question, ArrayList<Integer> range) {
         boolean valid = false;
         int value = -1;
+        int i = 1;
         do {
             try {
                 value = this.input.ask(question, range);
@@ -28,7 +29,7 @@ public class ValidateInput implements Input {
             } catch (NumberFormatException nfe) {
                 System.out.println("Please enter validate data again.");
             }
-        } while (!valid);
+        } while (!valid || i == 5);
         return value;
     }
 }

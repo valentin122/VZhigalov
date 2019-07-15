@@ -53,7 +53,7 @@ public class ValidateInputTest {
     }
 
     @Test
-    public void whenInvalidInput() {
+    public void whenNotAtMenuInput() {
         ArrayList<String> invalid = new ArrayList<>();
         invalid.add("1");
         invalid.add("11");
@@ -66,6 +66,22 @@ public class ValidateInputTest {
                 this.mem.toString(),
                 is(
                         String.format("Please select key from menu.%n"))
+        );
+    }
+    @Test
+    public void whenInvalidInput() {
+        ArrayList<String> invalid = new ArrayList<>();
+        invalid.add("i1");
+        invalid.add("i2");
+        ValidateInput input = new ValidateInput(
+                new StubInput(invalid)
+        );
+        input.ask("1", (new ArrayList(Arrays.asList(1))));
+        assertThat(
+                this.mem.toString(),
+                is(
+                        String.format("Please enter validate data again.%n")
+                )
         );
     }
 }

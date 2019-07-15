@@ -42,8 +42,7 @@ public class StubInput implements Input {
     public int ask(String question, ArrayList<Integer> range) {
         boolean exist = false;
         int key = 0;
-        try {
-             key = Integer.valueOf(this.ask(question));
+        key = Integer.valueOf(this.ask(question));
         for (int i : range) {
             if (i == key) {
                 exist = true;
@@ -53,9 +52,7 @@ public class StubInput implements Input {
         if (!exist) {
             throw new MenuOutException("out of menu range");
         }
-        } catch (Exception e) {
-            System.out.println("Not integer. Enter valid data.");
-        }
+
         return key;
     }
 }

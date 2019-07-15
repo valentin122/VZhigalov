@@ -17,7 +17,7 @@ public class StartUI {
     public int rangeMenu = menuTracker.getActionsLength();
     private final Input input;
     private final Tracker tracker;
-     protected boolean exit = false;
+    protected boolean exit = false;
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -28,7 +28,7 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         ArrayList<Integer> range = new ArrayList<>(rangeMenu);
-        menu.fillActions();
+        menu.fillActions(this);
         for (int i = 0; i < rangeMenu; i++) {
             range.add(i);
         }
@@ -43,6 +43,10 @@ public class StartUI {
         return sdf.format(new Date(date));
     }
 
+    public void stop() {
+        this.exit = true;
+    }
+
     /**
      * Запускт программы.
      * @param args
@@ -52,7 +56,13 @@ public class StartUI {
     }
 }
 class Exit implements UserAction {
-    private boolean exit = true;
+    private final StartUI ui;
+    private boolean exit;
+
+    Exit(StartUI ui) {
+        this.ui = ui;
+    }
+
     public int key() {
         return 6;
     }
@@ -60,6 +70,7 @@ class Exit implements UserAction {
     @Override
     public void execute(Input input, Tracker tracker) {
         System.out.println("Selected exit. Goodbye!");
+        this.exit = true;
     }
 
     @Override
