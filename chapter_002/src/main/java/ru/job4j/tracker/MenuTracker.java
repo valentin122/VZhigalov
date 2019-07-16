@@ -18,14 +18,14 @@ public class MenuTracker {
     public MenuTracker() {
     }
 
-    public void fillActions(StartUI ui) {
+    public void fillActions() {
         this.actions.add(new AddItem());
         this.actions.add(new FindAllItem());
         this.actions.add(new UpdateItem());
         this.actions.add(new DeleteItem());
         this.actions.add(new FindById());
         this.actions.add(new FindByNameItem());
-        this.actions.add(new Exit(ui));
+        this.actions.add(new Exit());
     }
 
     public void show() {

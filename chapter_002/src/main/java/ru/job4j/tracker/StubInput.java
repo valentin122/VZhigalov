@@ -41,7 +41,7 @@ public class StubInput implements Input {
     @Override
     public int ask(String question, ArrayList<Integer> range) {
         boolean exist = false;
-        int key = 0;
+        int key;
         key = Integer.valueOf(this.ask(question));
         for (int i : range) {
             if (i == key) {

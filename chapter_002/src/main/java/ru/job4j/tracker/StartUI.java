@@ -1,8 +1,6 @@
 package ru.job4j.tracker;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * StartUI
@@ -14,21 +12,20 @@ import java.util.Date;
 
 public class StartUI {
     MenuTracker menuTracker = new MenuTracker();
-    public int rangeMenu = menuTracker.getActionsLength();
     private final Input input;
     private final Tracker tracker;
-    protected boolean exit = false;
+
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
-    //Exit exitProgram = new Exit();
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        ArrayList<Integer> range = new ArrayList<>(rangeMenu);
-        menu.fillActions(this);
+        menu.fillActions();
+        ArrayList<Integer> range = new ArrayList<>();
+        int rangeMenu = menu.getActionsLength();
         for (int i = 0; i < rangeMenu; i++) {
             range.add(i);
         }
@@ -36,15 +33,7 @@ public class StartUI {
             menu.show();
             menu.select(input.ask("select:", range));
         } while (!"6".equals(this.input.ask("Exit?(6): ")));
-    }
 
-    private String longToDate(long date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd,MM,yy");
-        return sdf.format(new Date(date));
-    }
-
-    public void stop() {
-        this.exit = true;
     }
 
     /**
@@ -55,13 +44,8 @@ public class StartUI {
         new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
-class Exit implements UserAction {
-    private final StartUI ui;
-    private boolean exit;
 
-    Exit(StartUI ui) {
-        this.ui = ui;
-    }
+class Exit implements UserAction {
 
     public int key() {
         return 6;
@@ -70,7 +54,7 @@ class Exit implements UserAction {
     @Override
     public void execute(Input input, Tracker tracker) {
         System.out.println("Selected exit. Goodbye!");
-        this.exit = true;
+
     }
 
     @Override

@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,8 +34,10 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         ArrayList<String> action1 = new ArrayList<>();
-        String[] add = {"0", "test name", "desc", "y"};
-        action1.toArray(add);
+        action1.add("0");
+        action1.add("test name");
+        action1.add("desc");
+        action1.add("6");
         new StartUI(new StubInput(action1), tracker).init();
         assertThat(tracker.findAll().get(3).getName(), is("test name"));
     }
@@ -44,24 +45,28 @@ public class StartUITest {
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
         ArrayList<String> action2 = new ArrayList<>();
-        String[] add2 = {"2", tracker.findAll().get(0).getId(), "changed name", "changed description", "y"};
-        action2.toArray(add2);
+        action2.add("2");
+        action2.add(tracker.findAll().get(0).getId());
+        action2.add("changed name");
+        action2.add("changed description");
+        action2.add("6");
         new StartUI(new StubInput(action2), tracker).init();
         assertThat(tracker.findAll().get(0).getName(), is("changed name"));
     }
     @Test
     public void whenDeleteThenTrackerEmpty() {
         ArrayList<String> action3 = new ArrayList<>();
-        String[] add3 = {"3", tracker.findAll().get(0).getId(), "y"};
-        action3.toArray(add3);
+        action3.add("3");
+        action3.add(tracker.findAll().get(0).getId());
+        action3.add("6");
         new StartUI(new StubInput(action3), tracker).init();
         assertThat(tracker.findAll().size(), is(2));
     }
     @Test
     public void whenShowAll() {
         ArrayList<String> action = new ArrayList<>();
-        String[] add = {"1", "y"};
-        action.toArray(add);
+        action.add("1");
+        action.add("6");
         StringBuilder expected = new StringBuilder();
         expected.append("0. Add new Item.")
                 .append(System.lineSeparator() + "1. Show all items")
@@ -69,6 +74,7 @@ public class StartUITest {
                 .append(System.lineSeparator() + "3. Delete item")
                 .append(System.lineSeparator() + "4. Find item by id : ")
                 .append(System.lineSeparator() + "5. Find by name")
+                .append(System.lineSeparator() + "6. Exit")
                 .append(System.lineSeparator() + "----------- Show all items ------------")
                 .append(System.lineSeparator());
         for (Item item : tracker.findAll()) {
@@ -83,8 +89,9 @@ public class StartUITest {
     public void whenFindByIdThenShow() {
         ArrayList<String> action = new ArrayList<>();
         String id = tracker.findAll().get(0).getId();
-        String[] add = {"4", id, "y"};
-        action.toArray(add);
+        action.add("4");
+        action.add(id);
+        action.add("6");
         Item item = tracker.findById(id);
         String expected = String.format(item.getId(), item.getName(), item.getDesc());
         new StartUI(new StubInput(action), tracker).init();
@@ -93,8 +100,9 @@ public class StartUITest {
     @Test
     public void whenFindByNameThenShow() {
         ArrayList<String> action = new ArrayList<>();
-        String[] add = {"5", "test2", "y"};
-        action.toArray(add);
+        action.add("5");
+        action.add("test2");
+        action.add("6");
         StringBuilder expected = new StringBuilder();
         for (Item item : tracker.findByName("test2")) {
             expected.append(

@@ -72,7 +72,7 @@ public class ValidateInputTest {
     public void whenInvalidInput() {
         ArrayList<String> invalid = new ArrayList<>();
         invalid.add("i1");
-        invalid.add("i2");
+        invalid.add("1");
         ValidateInput input = new ValidateInput(
                 new StubInput(invalid)
         );
