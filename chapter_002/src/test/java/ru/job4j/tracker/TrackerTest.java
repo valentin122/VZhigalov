@@ -9,8 +9,6 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
-
-
 public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
@@ -39,6 +37,7 @@ public class TrackerTest {
         tracker.add(item1);
         tracker.add(item2);
         tracker.delete(item1.getId());
+        tracker.delete(item2.getId());
         assertThat(tracker.findById(item1.getId()), is(nullValue()));
     }
     @Test
