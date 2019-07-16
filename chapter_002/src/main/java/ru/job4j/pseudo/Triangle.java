@@ -8,7 +8,8 @@ public class Triangle implements Shape {
         pic.append("   +   ");
         pic.append("  +++  ");
         pic.append(" +++++ ");
-        pic.append("+++++++\r\n");
+        pic.append("+++++++");
+        pic.append(System.lineSeparator());
         return pic.toString();
     }
 }
