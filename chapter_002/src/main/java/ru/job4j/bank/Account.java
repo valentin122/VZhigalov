@@ -14,8 +14,8 @@ public class Account {
         return this.value;
     }
 
-    public double setValue(double value) {
-        return this.value = value;
+    public void setValue(double value) {
+        this.value = value;
     }
 
     public String getReqs() {

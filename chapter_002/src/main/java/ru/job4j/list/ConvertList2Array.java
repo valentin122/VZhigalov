@@ -16,17 +16,6 @@ public class ConvertList2Array {
                 cell = 0;
             }
         }
-        /*int index = 0;
-        for (int r = 0; r < rows; r++) {
-                for (int c = 0; c < cells; c++) {
-                    if (index >= list.size()) {
-                        array[r][c] = 0;
-                    } else {
-                        array[r][c] = list.get(index);
-                        index++;
-                    }
-                }
-            }*/
         return array;
     }
 }

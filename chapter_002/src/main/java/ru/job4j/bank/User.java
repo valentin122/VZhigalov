@@ -30,7 +30,7 @@ public class User implements Comparable<User> {
             return false;
         }
         User user = (User) o;
-        if (this.getPassport() != ((User) o).getPassport()){
+        if (this.getPassport() != ((User) o).getPassport()) {
             return false;
         }
         return this.name.equals(user.name);

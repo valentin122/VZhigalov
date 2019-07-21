@@ -47,7 +47,7 @@ public class Bank {
 
     public Account getAccountOfRequisite(String passport, String requisite) {
         Account result = null;
-        for (Account account : getUserAccounts(passport)){
+        for (Account account : getUserAccounts(passport)) {
             if (account.getReqs() == requisite) {
                 result = account;
                 break;
