@@ -22,6 +22,16 @@ public class Account {
         return this.reqs;
     }
 
+    boolean transfer(Account destination, double amount) {
+        boolean success = false;
+        if (amount > 0 && amount < this.value && destination != null) {
+            success = true;
+            this.value -= amount;
+            destination.value += amount;
+        }
+        return success;
+    }
+
     public String toString() {
         String otvet;
         otvet = "Account{" + "values=" + value + ", reqs='" + reqs + "\\" + "}";

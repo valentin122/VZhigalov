@@ -10,10 +10,14 @@ public class Bank {
 
     public User getUser(String passport) {
         User result = null;
-        for (User user : treemap.keySet()) {
-            if (user.getPassport() == passport) {
-                result = user;
+        if (!passport.equalsIgnoreCase(null)) {
+            for (User user : treemap.keySet()) {
+                if (user.getPassport() == passport) {
+                    result = user;
+                }
             }
+        } else {
+            System.out.println("Passport not found! Enter correct passport.");
         }
         return result;
     }
@@ -27,6 +31,7 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
+
         treemap.get(getUser(passport)).add(account);
     }
 
@@ -37,7 +42,7 @@ public class Bank {
     public List<Account> getUserAccounts(String passport) {
         ArrayList<Account> result = new ArrayList<>();
         for (User user : treemap.keySet()) {
-            if (user.getPassport() == passport) {
+            if (user.getPassport().equalsIgnoreCase(passport)) {
                 result = treemap.get(user);
                 break;
             }
@@ -48,7 +53,7 @@ public class Bank {
     public Account getAccountOfRequisite(String passport, String requisite) {
         Account result = null;
         for (Account account : getUserAccounts(passport)) {
-            if (account.getReqs() == requisite) {
+            if (account.getReqs().equalsIgnoreCase(requisite)) {
                 result = account;
                 break;
             }
