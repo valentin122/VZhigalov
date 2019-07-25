@@ -10,14 +10,11 @@ public class Bank {
 
     public User getUser(String passport) {
         User result = null;
-        if (!passport.equalsIgnoreCase(null)) {
-            for (User user : treemap.keySet()) {
-                if (user.getPassport() == passport) {
-                    result = user;
-                }
+        for (User user : treemap.keySet()) {
+            if (user.getPassport().equalsIgnoreCase(passport)) {
+                result = user;
+                break;
             }
-        } else {
-            System.out.println("Passport not found! Enter correct passport.");
         }
         return result;
     }
@@ -31,20 +28,28 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-
-        treemap.get(getUser(passport)).add(account);
+        User user = getUser(passport);
+        if (user != null) {
+            treemap.get(user).add(account);
+        }
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        treemap.get(getUser(passport)).remove(account);
+        User user = getUser(passport);
+        if (user != null) {
+            treemap.get(getUser(passport)).remove(account);
+        }
     }
 
     public List<Account> getUserAccounts(String passport) {
         ArrayList<Account> result = new ArrayList<>();
-        for (User user : treemap.keySet()) {
-            if (user.getPassport().equalsIgnoreCase(passport)) {
-                result = treemap.get(user);
-                break;
+        User user = getUser(passport);
+        if (user != null) {
+            for (User userCount : treemap.keySet()) {
+                if (userCount.getPassport().equalsIgnoreCase(passport)) {
+                    result = treemap.get(user);
+                    break;
+                }
             }
         }
         return result;
@@ -64,17 +69,13 @@ public class Bank {
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String destRequisite, double amount) {
         boolean transferSuccess = false;
         double srcValue = getAccountOfRequisite(srcPassport, srcRequisite).getValue();
-
-        System.out.println(srcValue);
-
         double destValueBefore = getAccountOfRequisite(destPassport, destRequisite).getValue();
         if (amount > 0 && amount < srcValue) {
             double destValue = destValueBefore + amount;
             getAccountOfRequisite(destPassport, destRequisite).setValue(destValue);
             transferSuccess = true;
-            System.out.println(destValue);
         }
-       return transferSuccess;
+        return transferSuccess;
     }
 
     public String toString() {

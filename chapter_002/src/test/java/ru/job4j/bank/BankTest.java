@@ -36,8 +36,6 @@ public class BankTest {
         Account account2 = new Account(2.2, "22");
         bank.addAccountToUser("passport", account1);
         bank.addAccountToUser("passport", account2);
-        String result = bank.getUserAccounts("passport").toString();
-        System.out.println(result);
         bank.deleteAccountFromUser("passport", account1);
         double expect = bank.getUserAccounts("passport").get(0).getValue();
         assertThat(expect, is(account2.getValue()));
