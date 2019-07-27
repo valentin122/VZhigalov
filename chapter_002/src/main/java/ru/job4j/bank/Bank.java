@@ -37,7 +37,7 @@ public class Bank {
     public void deleteAccountFromUser(String passport, Account account) {
         User user = getUser(passport);
         if (user != null) {
-            treemap.get(getUser(passport)).remove(account);
+            treemap.get(user).remove(account);
         }
     }
 
@@ -45,12 +45,7 @@ public class Bank {
         ArrayList<Account> result = new ArrayList<>();
         User user = getUser(passport);
         if (user != null) {
-            for (User userCount : treemap.keySet()) {
-                if (userCount.getPassport().equalsIgnoreCase(passport)) {
-                    result = treemap.get(user);
-                    break;
-                }
-            }
+            result = treemap.get(user);
         }
         return result;
     }
@@ -68,12 +63,10 @@ public class Bank {
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String destRequisite, double amount) {
         boolean transferSuccess = false;
-        double srcValue = getAccountOfRequisite(srcPassport, srcRequisite).getValue();
-        double destValueBefore = getAccountOfRequisite(destPassport, destRequisite).getValue();
-        if (amount > 0 && amount < srcValue) {
-            double destValue = destValueBefore + amount;
-            getAccountOfRequisite(destPassport, destRequisite).setValue(destValue);
-            transferSuccess = true;
+        Account accSrc = getAccountOfRequisite(srcPassport, srcRequisite);
+        Account accDest = getAccountOfRequisite(destPassport, destRequisite);
+        if (!accDest.equals(null) && !accSrc.equals(null)) {
+            transferSuccess = accSrc.transfer(accDest, amount);
         }
         return transferSuccess;
     }

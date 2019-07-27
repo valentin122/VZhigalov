@@ -10,11 +10,13 @@ import static org.junit.Assert.assertThat;
 public class BankTest {
     Bank bank = new Bank();
     User user = new User("Vasya", "passport");
+    User user2 = new User("Venya", "passport2");
 
     @Before
     public void addUser() {
         System.out.println("execute before method");
         bank.addUser(user);
+        bank.addUser(user2);
     }
 
     @Test
@@ -45,8 +47,21 @@ public class BankTest {
         Account account1 = new Account(1.1, "11");
         Account account2 = new Account(2.2, "22");
         bank.addAccountToUser("passport", account1);
-        bank.addAccountToUser("passport", account2);
-        boolean resultTransfer = bank.transferMoney("passport", "11", "passport", "22", 0.1);
+        bank.addAccountToUser("passport2", account2);
+        boolean resultTransfer = bank.transferMoney("passport", "11", "passport2", "22", 0.9);
+        System.out.println(account1.getValue());
+        System.out.println(account2.getValue());
         assertThat(resultTransfer, is(true));
+    }
+    @Test
+    public void whenTransferFalse() {
+        Account account1 = new Account(0.1, "11");
+        Account account2 = new Account(2.2, "22");
+        bank.addAccountToUser("passport", account1);
+        bank.addAccountToUser("passport2", account2);
+        boolean resultTransfer = bank.transferMoney("passport", "11", "passport2", "22", 0.9);
+        System.out.println(account1.getValue());
+        System.out.println(account2.getValue());
+        assertThat(resultTransfer, is(false));
     }
 }
