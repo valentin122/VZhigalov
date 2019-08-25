@@ -1,5 +1,10 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.input.ConsoleInput;
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.input.ValidateInput;
+import ru.job4j.tracker.menu.MenuTracker;
+
 import java.util.ArrayList;
 
 /**
@@ -11,10 +16,8 @@ import java.util.ArrayList;
  */
 
 public class StartUI {
-    MenuTracker menuTracker = new MenuTracker();
     private final Input input;
     private final Tracker tracker;
-
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -42,24 +45,6 @@ public class StartUI {
      */
     public static void main(String[] args) {
         new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
-    }
-}
-
-class Exit implements UserAction {
-
-    public int key() {
-        return 6;
-    }
-
-    @Override
-    public void execute(Input input, Tracker tracker) {
-        System.out.println("Selected exit. Goodbye!");
-
-    }
-
-    @Override
-    public String info() {
-        return "6. Exit";
     }
 }
 

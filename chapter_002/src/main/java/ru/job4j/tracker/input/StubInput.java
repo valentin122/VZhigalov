@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.input;
 
 import java.util.ArrayList;
 
@@ -40,19 +40,8 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, ArrayList<Integer> range) {
-        boolean exist = false;
-        int key;
-        key = Integer.valueOf(this.ask(question));
-        for (int i : range) {
-            if (i == key) {
-                exist = true;
-                break;
-            }
-        }
-        if (!exist) {
-            throw new MenuOutException("out of menu range");
-        }
-
+        ConsoleInput consoleInput = new ConsoleInput();
+        int key = consoleInput.ask(question, range);
         return key;
     }
 }

@@ -1,4 +1,7 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.menu;
+
+import ru.job4j.tracker.*;
+import ru.job4j.tracker.input.Input;
 
 import java.util.ArrayList;
 import java.util.List;

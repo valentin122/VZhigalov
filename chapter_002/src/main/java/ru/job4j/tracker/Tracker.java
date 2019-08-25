@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @since 02.01.19
  */
 
-class Tracker {
+public class Tracker {
 
     private ArrayList<Item> items = new ArrayList<>();
     private int position = 0;
