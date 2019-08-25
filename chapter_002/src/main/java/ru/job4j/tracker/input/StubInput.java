@@ -1,5 +1,7 @@
 package ru.job4j.tracker.input;
 
+import ru.job4j.tracker.menu.MenuOutException;
+
 import java.util.ArrayList;
 
 public class StubInput implements Input {
@@ -41,7 +43,12 @@ public class StubInput implements Input {
     @Override
     public int ask(String question, ArrayList<Integer> range) {
         ConsoleInput consoleInput = new ConsoleInput();
-        int key = consoleInput.ask(question, range);
+        int key = Integer.valueOf(this.ask(question));
+        boolean exist = consoleInput.exist(key, range);
+        if (!exist) {
+            throw new MenuOutException("out of menu range");
+        }
+
         return key;
     }
 }

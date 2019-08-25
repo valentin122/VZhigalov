@@ -14,9 +14,7 @@ public class ConsoleInput implements Input {
         return scanner.nextLine();
     }
 
-    @Override
-    public int ask(String question, ArrayList<Integer> range) throws MenuOutException {
-        int key = Integer.valueOf(this.ask(question));
+    public boolean exist(int key, ArrayList<Integer> range) {
         boolean exist = false;
         for (int value : range) {
             if (value == key) {
@@ -24,6 +22,13 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
+        return exist;
+    }
+
+    @Override
+    public int ask(String question, ArrayList<Integer> range) throws MenuOutException {
+        int key = Integer.valueOf(this.ask(question));
+        boolean exist = exist(key, range);
         if (!exist) {
             throw new MenuOutException("out of menu range");
         }
