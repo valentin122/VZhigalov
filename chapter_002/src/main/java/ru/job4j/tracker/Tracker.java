@@ -1,8 +1,6 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -65,24 +63,17 @@ public class Tracker {
     }
 
     public ArrayList<Item> findAll() {
-        /*ArrayList<Item> finded = new ArrayList<Item>(items.size());
-        finded.addAll(items);
-
-        for (Item item : items) {
-            finded.add(item);
-        }*/
         return items;
     }
 
     public ArrayList<Item> findByName(String name) {
-        int count = 0;
         ArrayList<Item> result = new ArrayList<>();
         for (int i = 0; i < position; i++) {
             if (items.get(i).getName().equals(name)) {
                 result.add(items.get(i));
             }
         }
-        return result; //Arrays.copyOf(result, count);
+        return result;
     }
 
     public Item findById(String id) {

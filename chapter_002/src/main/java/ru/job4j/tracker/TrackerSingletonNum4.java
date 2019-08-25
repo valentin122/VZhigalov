@@ -1,7 +1,5 @@
 package ru.job4j.tracker;
 
-import ru.job4j.tracker.Item;
-
 public class TrackerSingletonNum4 {
     private TrackerSingletonNum4() {
     }
