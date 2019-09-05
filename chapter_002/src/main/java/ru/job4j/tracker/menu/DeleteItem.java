@@ -3,7 +3,15 @@ package ru.job4j.tracker.menu;
 import ru.job4j.tracker.Tracker;
 import ru.job4j.tracker.input.Input;
 
+import java.util.function.Consumer;
+
 public class DeleteItem implements UserAction {
+    private final Consumer<String> output;
+
+    public DeleteItem(Consumer<String> output) {
+        this.output = output;
+    }
+
     @Override
     public int key() {
         return 3;
@@ -11,13 +19,13 @@ public class DeleteItem implements UserAction {
 
     @Override
     public void execute(Input input, Tracker tracker) {
-        System.out.println("------------- Delete item by id -------------");
-        System.out.println("------------- Input id item -------------");
+        output.accept("------------- Delete item by id -------------");
+        output.accept("------------- Input id item -------------");
         String id = input.ask("Please, input id item: ");
         if (tracker.delete(id)) {
-            System.out.println("------------- Deleted -------------");
+            output.accept("------------- Deleted -------------");
         } else {
-            System.out.println("------------- Not found -------------");
+            output.accept("------------- Not found -------------");
         }
     }
 

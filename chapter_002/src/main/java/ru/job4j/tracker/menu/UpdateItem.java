@@ -4,7 +4,15 @@ import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Tracker;
 import ru.job4j.tracker.input.Input;
 
+import java.util.function.Consumer;
+
 public class UpdateItem implements UserAction {
+    private final Consumer<String> output;
+
+    public UpdateItem(Consumer<String> output) {
+        this.output = output;
+    }
+
     @Override
     public int key() {
         return 2;
@@ -12,15 +20,15 @@ public class UpdateItem implements UserAction {
 
     @Override
     public void execute(Input input, Tracker tracker) {
-        System.out.println("------------- Editing item -------------");
+        output.accept("------------- Editing item -------------");
         String id = input.ask("Please input id item : ");
         String name = input.ask("Please input new item's name: ");
         String desc = input.ask("Please input new item's description: ");
         Item item = new Item(name, desc);
         if (tracker.replace(id, item)) {
-            System.out.println(" ------------- Item replace -------------");
+            output.accept(" ------------- Item replace -------------");
         } else {
-            System.out.println("------------- Item not found -------------");
+            output.accept("------------- Item not found -------------");
         }
     }
 

@@ -4,7 +4,15 @@ import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Tracker;
 import ru.job4j.tracker.input.Input;
 
+import java.util.function.Consumer;
+
 public class FindById implements UserAction {
+    private final Consumer<String> output;
+
+    public FindById(Consumer<String> output) {
+        this.output = output;
+    }
+
     @Override
     public int key() {
         return 4;
@@ -15,9 +23,9 @@ public class FindById implements UserAction {
         String id = input.ask("Enter Item id to find : ");
         Item foundItem = tracker.findById(id);
         if (foundItem != null) {
-            System.out.println("Item founded by id: " + foundItem);
+            output.accept("Item founded by id: " + foundItem);
         } else {
-            System.out.println("Id not found!");
+            output.accept("Id not found!");
         }
     }
 

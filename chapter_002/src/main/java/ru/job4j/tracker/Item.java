@@ -8,6 +8,8 @@ public class Item {
 
     public Item(String name, String desc, long create) {
         this.name = name;
+        this.desc = desc;
+        this.create = create;
     }
 
     public Item(String name, String desc) {
@@ -38,10 +40,6 @@ public class Item {
 
     public String getDesc() {
         return desc;
-    }
-
-    public long getCreate() {
-        return create;
     }
 
     @Override

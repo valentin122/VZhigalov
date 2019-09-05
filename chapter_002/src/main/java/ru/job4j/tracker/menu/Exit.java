@@ -3,7 +3,15 @@ package ru.job4j.tracker.menu;
 import ru.job4j.tracker.Tracker;
 import ru.job4j.tracker.input.Input;
 
+import java.util.function.Consumer;
+
 class Exit implements UserAction {
+    private final Consumer<String> output;
+
+    Exit(Consumer<String> output) {
+        this.output = output;
+    }
+
     @Override
     public int key() {
         return 6;
@@ -11,7 +19,7 @@ class Exit implements UserAction {
 
     @Override
     public void execute(Input input, Tracker tracker) {
-        System.out.println("Selected exit. Goodbye!");
+        output.accept("Selected exit. Goodbye!");
     }
 
     @Override

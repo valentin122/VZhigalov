@@ -5,8 +5,15 @@ import ru.job4j.tracker.Tracker;
 import ru.job4j.tracker.input.Input;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class FindByNameItem implements UserAction {
+    private final Consumer<String> output;
+
+    public FindByNameItem(Consumer<String> output) {
+        this.output = output;
+    }
+
     @Override
     public int key() {
         return 5;
@@ -14,15 +21,15 @@ public class FindByNameItem implements UserAction {
 
     @Override
     public void execute(Input input, Tracker tracker) {
-        System.out.println("------------ Find item by name ------------");
+        output.accept("------------ Find item by name ------------");
         String name = input.ask("Please input item's name:");
         ArrayList<Item> foundItems = tracker.findByName(name);
         if (foundItems.size() > 0) {
             for (Item element : foundItems) {
-                System.out.println("------------ Found item:" + element);
+                output.accept("------------ Found item:" + element);
             }
         } else {
-            System.out.println("------------ Not found with name " + name);
+            output.accept("------------ Not found with name " + name);
         }
     }
 
