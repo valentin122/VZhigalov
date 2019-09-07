@@ -3,7 +3,7 @@ package ru.job4j.school;
 public class Student {
     private int scope;
 
-    public Student (int scope) {
+    public Student(int scope) {
         this.scope = scope;
     }
 
