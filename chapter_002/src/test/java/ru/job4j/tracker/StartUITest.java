@@ -8,7 +8,6 @@ import ru.job4j.tracker.input.StubInput;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -32,15 +31,6 @@ public class StartUITest {
     public void backOutput() {
         System.setOut(new PrintStream(stdout));
     }
-
-    private final Consumer<String> output = new Consumer<>() {
-        private final PrintStream stdout = new PrintStream(out);
-
-        @Override
-        public void accept(String s) {
-            stdout.println(s);
-        }
-    };
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
