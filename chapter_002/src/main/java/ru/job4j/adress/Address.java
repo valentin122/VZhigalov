@@ -38,10 +38,10 @@ public class Address {
     }
     @Override
     public boolean equals(Object object) {
-        if(this == object) {
+        if (this == object) {
             return true;
         }
-        if(object == null || this.getClass() != object.getClass()) {
+        if (object == null || this.getClass() != object.getClass()) {
             return false;
         }
         Address address = (Address) object;
