@@ -36,4 +36,23 @@ public class Address {
                 + "home: " + home
                 + "apartament: " + apartment;
     }
+    @Override
+    public boolean equals(Object object) {
+        if(this == object) {
+            return true;
+        }
+        if(object == null || this.getClass() != object.getClass()) {
+            return false;
+        }
+        Address address = (Address) object;
+
+        return this.city.equals(address.getCity())
+                && this.street.equals(address.getStreet())
+                && this.home == address.getHome()
+                && this.apartment == address.getApartment();
+    }
+    @Override
+    public int hashCode() {
+        return city.hashCode() + apartment;
+    }
 }
