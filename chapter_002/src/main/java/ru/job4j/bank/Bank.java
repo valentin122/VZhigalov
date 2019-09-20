@@ -9,18 +9,17 @@ public class Bank {
     private TreeMap<User, ArrayList<Account>> treemap = new TreeMap<>();
 
     public User getUser(String passport) {
-        User result = null;
-        for (User user : treemap.keySet()) {
-            if (user.getPassport().equalsIgnoreCase(passport)) {
-                result = user;
-                break;
-            }
-        }
+        User result = treemap.keySet()
+                .stream()
+                .filter(e -> e.getPassport()
+                        .equalsIgnoreCase(passport))
+                .findFirst()
+                .orElse(null);
         return result;
     }
 
     public void addUser(User user) {
-        treemap.putIfAbsent(user, new ArrayList<Account>());
+        treemap.putIfAbsent(user, new ArrayList<>());
     }
 
     public void deleteUser(User user) {
@@ -51,13 +50,12 @@ public class Bank {
     }
 
     public Account getAccountOfRequisite(String passport, String requisite) {
-        Account result = null;
-        for (Account account : getUserAccounts(passport)) {
-            if (account.getReqs().equalsIgnoreCase(requisite)) {
-                result = account;
-                break;
-            }
-        }
+        Account result = getUserAccounts(passport)
+                .stream()
+                .filter(x -> x.getReqs()
+                        .equalsIgnoreCase(requisite))
+                .findFirst()
+                .orElse(null);
         return result;
     }
 
