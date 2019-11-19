@@ -28,7 +28,6 @@ public class JaggedArrayIterator implements Iterator {
     @Override
     public Integer next() {
         int result;
-            // текущая ячейка               //последняя ячейка в этой строке
         if(matrix[indexCol][indexRow] == matrix[indexCol][(matrix[indexCol].length - 1)]) {
             result = matrix[indexCol++][indexRow];
             indexRow = 0;
