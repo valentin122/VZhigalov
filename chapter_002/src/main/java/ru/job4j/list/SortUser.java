@@ -22,13 +22,15 @@ public class SortUser {
     }
 
     public List<User> sortByAllFields(List<User> users) {
-        users.sort(new Comparator<>() {
+        List<User> sortedByAllFriends = new ArrayList<>();
+        users.sort(new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
                 int result = o1.getName().compareTo(o2.getName());
                 return result != 0 ? result : Integer.compare(o1.getAge(), o2.getAge());
             }
         });
+        sortedByAllFriends.addAll(users);
         return users;
     }
 }

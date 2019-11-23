@@ -3,6 +3,7 @@ package ru.job4j.list;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class SortUserTest {
 
 
     @Test
-    public  void SortUserTest() {
+    public  void test() {
         Set<User> expectedSet = sortUser.sort(expected.stream().collect(Collectors.toList()));
         System.out.println(expectedSet);
         assertThat(expectedSet.equals(actual), is(true));
@@ -45,15 +46,15 @@ public class SortUserTest {
 
     @Test
     public void whenSortByAllFieldsThen() {
-        List<User> unsortedList = List.of(
+        List<User> unsortedList = Arrays.asList(
                 new User("Hans", 16),
                 new User("Fritz", 17),
                 new User("Maxim", 18),
-                new User("Maximus", 19),
+                new User("Maxim", 19),
                 new User("Max", 29)
         );
         List<User> result = sortUser.sortByAllFields(unsortedList);
         System.out.println(result);
-        assertThat(result.get(2).getName().equals("Maxim"), is(true));
+        assertThat(result.get(4).getAge() == 19, is(true));
     }
 }
