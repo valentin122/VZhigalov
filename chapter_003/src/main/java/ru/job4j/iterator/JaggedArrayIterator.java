@@ -1,6 +1,7 @@
 package ru.job4j.iterator;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class JaggedArrayIterator implements Iterator {
 
@@ -19,6 +20,9 @@ public class JaggedArrayIterator implements Iterator {
 
     @Override
     public Integer next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
         int result;
         if (matrix[indexCol][indexRow] == matrix[indexCol][(matrix[indexCol].length - 1)]) {
             result = matrix[indexCol++][indexRow];
