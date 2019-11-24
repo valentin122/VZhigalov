@@ -23,12 +23,10 @@ public class JaggedArrayIterator implements Iterator {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        int result;
-        if (matrix[indexCol][indexRow] == matrix[indexCol][(matrix[indexCol].length - 1)]) {
-            result = matrix[indexCol++][indexRow];
+        int result = matrix[indexCol][indexRow++];
+        if (indexRow == matrix[indexCol].length) {
             indexRow = 0;
-        } else {
-            result = matrix[indexCol][indexRow++];
+            indexCol++;
         }
         return result;
     }
