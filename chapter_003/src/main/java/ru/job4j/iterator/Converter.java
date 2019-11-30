@@ -24,9 +24,9 @@ public class Converter {
                     hasNext = current.hasNext();
                 } else if (it.hasNext()) {
                     while (it.hasNext()) {
-                            current = it.next();
-                            hasNext = current.hasNext();
-                         if(hasNext == true) {
+                        current = it.next();
+                        hasNext = current.hasNext();
+                        if (hasNext) {
                             break;
                         }
                     }
