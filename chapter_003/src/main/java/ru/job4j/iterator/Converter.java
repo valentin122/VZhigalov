@@ -21,10 +21,15 @@ public class Converter {
             public boolean hasNext() {
                 boolean hasNext = false;
                 if (current.hasNext()) {
-                    hasNext = true;
-                } else if (it.hasNext()) {
-                    current = it.next();
                     hasNext = current.hasNext();
+                } else if (it.hasNext()) {
+                    while (it.hasNext()) {
+                            current = it.next();
+                            hasNext = current.hasNext();
+                         if(hasNext == true) {
+                            break;
+                        }
+                    }
                 }
                 return hasNext;
             }
