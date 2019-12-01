@@ -22,11 +22,12 @@ public class SimpleArray<T> implements Iterable<T> {
         objects[index] = model;
     }
 
-    public void remove(int index) {
+    public boolean remove(int index) {
         for (int i = index; i < size; i++) {
             objects[i] = objects[i + 1];
         }
         size--;
+        return true;
     }
 
     public Object get(int index) {
