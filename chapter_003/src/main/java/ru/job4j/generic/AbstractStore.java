@@ -1,8 +1,8 @@
 package ru.job4j.generic;
 
-public class AbstractStore<T extends Base> implements Store {
+public class AbstractStore<T extends Base> implements Store<T> {
     private int size;
-    private SimpleArray<Base> simpleArray = new SimpleArray(size);
+    private SimpleArray<T> simpleArray = new SimpleArray<>(size);
 
     public AbstractStore(int size) {
         this.size = size;
@@ -19,7 +19,7 @@ public class AbstractStore<T extends Base> implements Store {
         boolean result = false;
         for (Base item : simpleArray) {
             if (item.getId().equals(id)) {
-                simpleArray.set(index, model);
+                simpleArray.set(index, (T) model);
                 result = true;
             }
             index++;
@@ -42,7 +42,7 @@ public class AbstractStore<T extends Base> implements Store {
     }
 
     @Override
-    public Base findById(String id) {
+    public T findById(String id) {
         Base result = null;
         int index = 0;
         for (Base base : simpleArray) {
@@ -52,6 +52,6 @@ public class AbstractStore<T extends Base> implements Store {
             }
             index++;
         }
-        return result;
+        return (T) result;
     }
 }
