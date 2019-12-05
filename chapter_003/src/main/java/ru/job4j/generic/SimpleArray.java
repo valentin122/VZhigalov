@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SimpleArray<T> implements Iterable<T> {
-    Object[] objects;
-    int index = 0;
-    int size = 0;
+    private Object[] objects;
+    private int index = 0;
+    private int size = 0;
 
     public SimpleArray(int size) {
         this.objects = new Object[size];
@@ -19,14 +19,13 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void set(int index, T model) {
-        objects[index] = model;
+        if (index <= size) {
+            objects[index] = model;
+        }
     }
 
     public boolean remove(int index) {
-        for (int i = index; i < size; i++) {
-            objects[i] = objects[i + 1];
-        }
-        size--;
+        System.arraycopy(objects, index + 1, objects, index, size - 1);
         return true;
     }
 
