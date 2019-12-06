@@ -66,10 +66,10 @@ public class SimpleArrayTest {
 
     @Test
     public void whenAddOverLimitElements() {
-        assertThat(simpleArray.get(8), is (nullValue()));
+        assertThat(simpleArray.get(8), is(nullValue()));
         for (int i = 0; i < 50; i++) {
             simpleArray.add(i);
         }
-        assertThat(simpleArray.get(57), is (49));
+        assertThat(simpleArray.get(57), is(49));
     }
 }
