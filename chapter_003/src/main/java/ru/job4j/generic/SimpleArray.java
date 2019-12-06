@@ -9,11 +9,17 @@ public class SimpleArray<T> implements Iterable<T> {
     private int index = 0;
     private int size = 0;
 
-    public SimpleArray(int size) {
-        this.objects = new Object[size];
+
+    public SimpleArray(int volume) {
+        this.objects = new Object[volume];
     }
 
     public void add(T model) {
+        if (size == objects.length) {
+            Object[] objectsTemp = new Object[objects.length * 2];
+            System.arraycopy(objects, 0, objectsTemp, 0, size);
+            objects = objectsTemp;
+        }
         objects[index++] = model;
         size++;
     }
