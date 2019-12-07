@@ -1,22 +1,23 @@
 package ru.job4j.list;
 
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class SimpleLinkedList<E> {
+public class SimpleLinkedList<E> implements Iterable<E> {
 
     private int size;
     private Node<E> first;
+    private int modCount = 0;
 
     public void add(E data) {
         Node<E> newLink = new Node<>(data);
         newLink.next = this.first;
         this.first = newLink;
         this.size++;
+        modCount++;
     }
 
-    /**
-     * Реализовать метод удаления первого элемента в списке.
-     */
     public E delete() {
         if (size == 0) {
             throw new NoSuchElementException();
@@ -24,6 +25,7 @@ public class SimpleLinkedList<E> {
         E data = this.first.data;
         first = first.next;
         size--;
+        modCount++;
         return data;
     }
 
@@ -37,6 +39,29 @@ public class SimpleLinkedList<E> {
 
     public int getSize() {
         return this.size;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        int savedModCount = modCount;
+        return new Iterator<E>() {
+            private int indexIterator = 0;
+            @Override
+            public boolean hasNext() {
+                return indexIterator < size;
+            }
+
+            @Override
+            public E next() {
+                if (savedModCount != modCount) {
+                    new ConcurrentModificationException();
+                }
+                E result = first.data;
+                indexIterator++;
+                first = first.next;
+                return result;
+            }
+        };
     }
 
     /**

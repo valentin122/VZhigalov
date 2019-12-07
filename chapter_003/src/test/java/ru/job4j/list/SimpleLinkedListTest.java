@@ -1,7 +1,11 @@
 package ru.job4j.list;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.Before;
+
+import java.util.Iterator;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -38,9 +42,30 @@ public class SimpleLinkedListTest {
     public void getSize() {
         assertThat(list.getSize(), is(3));
     }
-    public void toStr() {
-        for (int i = 0; i < list.getSize(); i++) {
-            System.out.println(list.get(i));
+
+    @Test
+    public void whenAddOverLimitElements() {
+        for (int i = 0; i < 50; i++) {
+            list.add(i);
         }
+        assertThat(list.getSize(), is(53));
     }
+
+    @Test
+    public void whenIterateThanOk() {
+        list.add(3);
+        list.add(4);
+        Iterator<Integer> it = list.iterator();
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.next(), is(4));
+        assertThat(it.next(), is(3));
+        assertThat(it.next(), is(3));
+        assertThat(it.next(), is(2));
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.next(), is(1));
+        MatcherAssert.assertThat(it.hasNext(), is(false));
+    }
+
+
 }
