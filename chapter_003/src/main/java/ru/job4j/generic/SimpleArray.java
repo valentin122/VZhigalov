@@ -16,9 +16,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public void add(T model) {
         if (size == objects.length) {
-            Object[] objectsTemp = new Object[objects.length * 2];
-            System.arraycopy(objects, 0, objectsTemp, 0, size);
-            objects = objectsTemp;
+            enlargement();
         }
         objects[index++] = model;
         size++;
@@ -31,12 +29,20 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public boolean remove(int index) {
-        System.arraycopy(objects, index + 1, objects, index, size - 1);
-        return true;
+        if (index <= size) {
+            System.arraycopy(objects, index + 1, objects, index, size - 1);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Object get(int index) {
-        return objects[index];
+        if (index <= size) {
+            return objects[index];
+        } else {
+            return new ArrayIndexOutOfBoundsException();
+        }
     }
 
     @Override
@@ -66,5 +72,11 @@ public class SimpleArray<T> implements Iterable<T> {
                 + ", index=" + index
                 + ", size=" + size
                 + '}';
+    }
+
+    private void enlargement() {
+        Object[] objectsTemp = new Object[objects.length * 2];
+        System.arraycopy(objects, 0, objectsTemp, 0, size);
+        objects = objectsTemp;
     }
 }
