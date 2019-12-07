@@ -1,18 +1,18 @@
 package ru.job4j.generic;
 
-public class RoleStore extends AbstractStore implements Store {
+public class RoleStore extends AbstractStore<Role> {
 
     public RoleStore(int size) {
         super(size);
     }
 
     @Override
-    public void add(Base model) {
+    public void add(Role model) {
         super.add(model);
     }
 
     @Override
-    public boolean replace(String id, Base model) {
+    public boolean replace(String id, Role model) {
         return super.replace(id, model);
     }
 
@@ -22,7 +22,7 @@ public class RoleStore extends AbstractStore implements Store {
     }
 
     @Override
-    public Base findById(String id) {
+    public Role findById(String id) {
         return super.findById(id);
     }
 }

@@ -9,17 +9,17 @@ public class AbstractStore<T extends Base> implements Store<T> {
     }
 
     @Override
-    public void add(Base model) {
-        simpleArray.add((T) model);
+    public void add(T model) {
+        simpleArray.add(model);
     }
 
     @Override
-    public boolean replace(String id, Base model) {
+    public boolean replace(String id, T model) {
         int index = 0;
         boolean result = false;
         for (Base item : simpleArray) {
             if (item.getId().equals(id)) {
-                simpleArray.set(index, (T) model);
+                simpleArray.set(index, model);
                 result = true;
             }
             index++;
