@@ -17,9 +17,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        if (size == objects.length) {
-            enlargement();
-        }
+        enlargement();
         objects[index++] = model;
         size++;
         modCount++;
@@ -84,8 +82,10 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     private void enlargement() {
-        Object[] objectsTemp = new Object[objects.length * 2];
-        System.arraycopy(objects, 0, objectsTemp, 0, size);
-        objects = objectsTemp;
+        if (size == objects.length) {
+            Object[] objectsTemp = new Object[objects.length * 2];
+            System.arraycopy(objects, 0, objectsTemp, 0, size);
+            objects = objectsTemp;
+        }
     }
 }
