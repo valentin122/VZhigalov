@@ -11,4 +11,8 @@ public class SimpleStack<T> {
     public void push(T value)  {
         simpleLinkedList.add(value);
     }
+
+    public int getSize() {
+        return simpleLinkedList.getSize();
+    }
 }
