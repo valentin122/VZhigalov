@@ -1,8 +1,8 @@
 package ru.job4j.list;
 
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Iterator;
 
@@ -66,6 +66,4 @@ public class SimpleLinkedListTest {
         assertThat(it.next(), is(1));
         MatcherAssert.assertThat(it.hasNext(), is(false));
     }
-
-
 }

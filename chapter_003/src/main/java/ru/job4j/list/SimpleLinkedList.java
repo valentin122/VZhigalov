@@ -46,6 +46,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         int savedModCount = modCount;
         return new Iterator<E>() {
             private int indexIterator = 0;
+
             @Override
             public boolean hasNext() {
                 return indexIterator < size;
@@ -62,6 +63,25 @@ public class SimpleLinkedList<E> implements Iterable<E> {
                 return result;
             }
         };
+    }
+
+    boolean hasCycle(Node first) {
+        Node slow = first;
+        Node fast = first;
+
+        if (first == null) {
+            return false;
+        }
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
