@@ -17,7 +17,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     public boolean replace(String id, T model) {
         int index = 0;
         boolean result = false;
-        for (Base item : simpleArray) {
+        for (T item : simpleArray) {
             if (item.getId().equals(id)) {
                 simpleArray.set(index, model);
                 result = true;
@@ -31,7 +31,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     public boolean delete(String id) {
         int index = 0;
         boolean result = false;
-        for (Base base : simpleArray) {
+        for (T base : simpleArray) {
             if (base.getId().equals(id)) {
                 result = simpleArray.remove(index);
                 break;
@@ -43,15 +43,15 @@ public class AbstractStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        Base result = null;
+        T result = null;
         int index = 0;
-        for (Base base : simpleArray) {
+        for (T base : simpleArray) {
             if (base.getId().equals(id)) {
-                result = (Base) simpleArray.get(index);
+                result = (T) simpleArray.get(index);
                 break;
             }
             index++;
         }
-        return (T) result;
+        return result;
     }
 }
