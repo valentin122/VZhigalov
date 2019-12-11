@@ -11,7 +11,6 @@ public class SimpleArray<T> implements Iterable<T> {
     private int size = 0;
     private int modCount = 0;
 
-
     public SimpleArray(int volume) {
         this.objects = new Object[volume];
     }
@@ -87,5 +86,9 @@ public class SimpleArray<T> implements Iterable<T> {
             System.arraycopy(objects, 0, objectsTemp, 0, size);
             objects = objectsTemp;
         }
+    }
+
+    public int getSize() {
+        return size;
     }
 }
