@@ -24,7 +24,7 @@ public class UserStoreTest {
     }
     @Test
     public void replace() {
-        assertThat(userStore.replace("2", user3), is(true));
+        assertThat(userStore.replace("1", user3), is(true));
     }
 
     @Test
