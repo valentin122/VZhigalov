@@ -26,6 +26,11 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
             count++;
             modCount++;
             return true;
+        } else if (key.equals(map[bucket].key)) {
+            map[bucket] = new Entry<>(key, value);
+            count++;
+            modCount++;
+            return true;
         } else {
             return false;
         }
@@ -40,16 +45,18 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
     }
 
     public boolean delete(K key) {
+        boolean result = false;
         int hashTarget = hash(key);
         int innerHash = hash(map[getIndexBucket(key)].key);
         if (hashTarget == innerHash) {
-            map[getIndexBucket(key)] = null;
-            modCount++;
-            count--;
-            return true;
-        } else {
-            return false;
+            if (map[getIndexBucket(key)].key.equals(key)) {
+                map[getIndexBucket(key)] = null;
+                modCount++;
+                count--;
+                result = true;
+            }
         }
+        return result;
     }
 
     private int getIndexBucket(K key) {
@@ -71,8 +78,11 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
 
     private void resize() {
         if (count == map.length) {
-            Entry<K, V>[] mapTemp = new Entry[(map.length * 2)];
-            System.arraycopy(map, 0, mapTemp, 0, size);
+            size = map.length * 2;
+            Entry<K, V>[] mapTemp = new Entry[size];
+            for (Entry<K, V> entry : map) {
+                mapTemp[getIndexBucket(entry.key)] = entry;
+            }
         }
     }
 
@@ -81,12 +91,14 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         return new Iterator<V>() {
             int index = 0;
             int modified = modCount;
+            int indexNext = 0;
 
             @Override
             public boolean hasNext() {
                 boolean result = false;
                 for (int i = index; i < size; i++) {
                     if (map[i].key != null) {
+                        indexNext = i;
                         result = true;
                     }
                 }
@@ -99,11 +111,8 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
                 if (modCount != modified) {
                     new ConcurrentModificationException();
                 }
-                for (int i = index; i < size; i++) {
-                    if (map[i].key != null) {
-                        result = map[index].value;
-                        break;
-                    }
+                if (indexNext != 0) {
+                    result = map[indexNext].value;
                 }
                 return result;
             }
