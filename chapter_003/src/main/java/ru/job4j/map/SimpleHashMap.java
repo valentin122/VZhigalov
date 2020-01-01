@@ -2,6 +2,7 @@ package ru.job4j.map;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SimpleHashMap<K, V> implements Iterable<V> {
     private Entry<K, V>[] map;
@@ -79,7 +80,8 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
     private void resize() {
         if (count == map.length) {
             size = map.length * 2;
-            Entry<K, V>[] mapTemp = new Entry[size];
+            Entry[] mapTemp;
+            mapTemp = new Entry[size];
             for (Entry<K, V> entry : map) {
                 mapTemp[getIndexBucket(entry.key)] = entry;
             }
@@ -91,15 +93,16 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         return new Iterator<V>() {
             int index = 0;
             int modified = modCount;
-            int indexNext = 0;
+           // int indexNext = 0;
 
             @Override
             public boolean hasNext() {
                 boolean result = false;
                 for (int i = index; i < size; i++) {
-                    if (map[i].key != null) {
-                        indexNext = i;
+                    if (map[i] != null) {
+                        index = i;
                         result = true;
+                        break;
                     }
                 }
                 return result;
@@ -107,12 +110,15 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
 
             @Override
             public V next() {
-                V result = null;
+                V result;
                 if (modCount != modified) {
                     new ConcurrentModificationException();
                 }
-                if (indexNext != 0) {
-                    result = map[indexNext].value;
+
+                if (hasNext()) {
+                    result = map[index++].value;
+                } else {
+                    throw new NoSuchElementException();
                 }
                 return result;
             }
