@@ -3,6 +3,8 @@ package ru.job4j.map;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -32,6 +34,21 @@ public class SimpleHashMapTest {
     }
 
     @Test
+    public void resizeTest() {
+        assertThat(map.getSize(), is(1));
+        map.insert(2, "2");
+        map.insert(3, "3");
+        map.insert(4, "4");
+        map.insert(5, "5");
+        map.insert(6, "6");
+        map.insert(7, "7");
+        map.insert(8, "8");
+        map.insert(9, "9");
+        map.insert(10, "10");
+        assertThat(map.getSize(), is(10));
+    }
+
+    @Test
     public void iteratorTest() {
         map.insert(2, "2");
         map.insert(3, "3");
@@ -49,5 +66,4 @@ public class SimpleHashMapTest {
         assertThat(it.next(), is("5"));
         assertThat(it.hasNext(), is(false));
     }
-
 }

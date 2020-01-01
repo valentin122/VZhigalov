@@ -29,6 +29,7 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
             return true;
         } else if (key.equals(map[bucket].key)) {
             map[bucket] = new Entry<>(key, value);
+            resize();
             count++;
             modCount++;
             return true;
@@ -78,13 +79,16 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
     }
 
     private void resize() {
-        if (count == map.length) {
+        if (count == map.length - 1) {
             size = map.length * 2;
             Entry[] mapTemp;
             mapTemp = new Entry[size];
             for (Entry<K, V> entry : map) {
-                mapTemp[getIndexBucket(entry.key)] = entry;
+                if (entry != null) {
+                    mapTemp[getIndexBucket(entry.key)] = entry;
+                }
             }
+            map = mapTemp;
         }
     }
 
@@ -93,7 +97,6 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         return new Iterator<V>() {
             int index = 0;
             int modified = modCount;
-           // int indexNext = 0;
 
             @Override
             public boolean hasNext() {
