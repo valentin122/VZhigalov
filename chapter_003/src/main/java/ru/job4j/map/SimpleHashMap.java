@@ -29,7 +29,6 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
             return true;
         } else if (key.equals(map[bucket].key)) {
             map[bucket] = new Entry<>(key, value);
-            resize();
             count++;
             modCount++;
             return true;
@@ -113,17 +112,13 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
 
             @Override
             public V next() {
-                V result;
                 if (modCount != modified) {
                     new ConcurrentModificationException();
                 }
-
-                if (hasNext()) {
-                    result = map[index++].value;
-                } else {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return result;
+                return map[index++].value;
             }
         };
     }
