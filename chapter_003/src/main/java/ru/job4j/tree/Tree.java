@@ -1,8 +1,6 @@
 package ru.job4j.tree;
 
-
 import java.util.*;
-
 
 public class Tree<E extends Comparable<E>> implements SimpleTree {
     private int modCount = 0;
