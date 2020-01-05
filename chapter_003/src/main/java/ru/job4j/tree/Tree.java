@@ -16,9 +16,9 @@ public class Tree<E extends Comparable<E>> implements SimpleTree {
     public boolean add(Comparable parent, Comparable child) {
         boolean rsl = false;
         Optional<Node<E>> parentTemp = findBy(parent);
-        Optional<Node<E>> childTemp = findBy(parent);
+        Optional<Node<E>> childTemp = findBy(child);
         if (parentTemp.isPresent()) {
-            if (childTemp.isPresent()) {
+            if (!childTemp.isPresent()) {
                 parentTemp.get().add(new Node<>(child));
                 modCount++;
                 size++;
@@ -77,7 +77,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree {
 
             @Override
             public Node<E> next() {
-                if (queue.size() == 0) {
+                if (!hasNext()) {
                     new NoSuchElementException();
                 }
                 if (iteratorModCount != modCount) {

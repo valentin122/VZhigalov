@@ -8,11 +8,6 @@ import java.util.Iterator;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * @author Petr Arsentev (parsentev@yandex.ru)
- * @version $Id$
- * @since 0.1
- */
 public class TreeTest {
     Tree<Integer> tree = new Tree<>(1);
 
