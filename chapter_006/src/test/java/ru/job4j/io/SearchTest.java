@@ -21,6 +21,7 @@ public class SearchTest {
     public void setUp() throws Exception {
         file = new File(path + "test789.txt");
         FileWriter fileWriter = new FileWriter(file);
+        fileWriter.write(1);
     }
 
     @After
