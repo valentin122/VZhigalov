@@ -19,7 +19,7 @@ public class SearchTest {
 
     @Before
     public void setUp() throws Exception {
-        file = new File(System.getProperty("java.io.tmpdir") + "test789.txt");
+        file = new File(path + File.separator + "test789.txt");
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(1);
     }
