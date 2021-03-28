@@ -23,7 +23,7 @@ public class Search {
                 }
             } else {
                 for (String ext : exts) {
-                    if (fileTemp.getName().endsWith(ext)) {
+                    if (!fileTemp.getName().endsWith(ext)) {
                         result.add(fileTemp);
                     }
                 }
