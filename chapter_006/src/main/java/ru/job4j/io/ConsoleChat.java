@@ -13,6 +13,8 @@ public class ConsoleChat {
     private static final String CONTINUE = "продолжить";
     private static final String CONTINUEANSWER = "продолжаем...";
     private static final String BYE = "Программа завершена. До свидания.";
+    private List<String> history = new ArrayList<String>();
+    private List<String> answersList = new ArrayList<String>();
 
     public ConsoleChat(String pathToHistoryFile, String botAnswers) {
         this.pathToHistoryFile = pathToHistoryFile;
@@ -25,21 +27,22 @@ public class ConsoleChat {
 
         while (in.hasNext()) {
             String input = in.nextLine();
-            writeHistory("User: " + input);
+            history.add("User: " + input);
             if (input.equals(OUT)) {
-                writeHistory("Bot: " + BYE);
+                history.add("Bot: " + BYE);
                 System.out.println(BYE);
+                writeHistory(history);
                 break;
             } else if (input.equals(CONTINUE)) {
                 isStopping = false;
                 System.out.println(CONTINUEANSWER);
-                writeHistory("Bot: " + CONTINUEANSWER);
+                history.add("Bot: " + CONTINUEANSWER);
             } else if (input.equals(STOP)) {
                 isStopping = true;
             } else if (!isStopping) {
                 String answer = getBotAnswers();
                 System.out.println(answer);
-                writeHistory("Bot: " + answer);
+                history.add("Bot: " + answer);
             }
         }
     }
@@ -49,9 +52,11 @@ public class ConsoleChat {
         cc.run();
     }
 
-    private void writeHistory(String lineToHistory) {
+    private void writeHistory(List<String> history) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathToHistoryFile, true))) {
-            writer.write(lineToHistory + System.lineSeparator());
+            for (String line : history) {
+                writer.write(line + System.lineSeparator());
+            }
             writer.flush();
         } catch (IOException e) {
             System.out.println(e);
@@ -59,16 +64,17 @@ public class ConsoleChat {
     }
 
     private String getBotAnswers() {
-        List<String> answersList = new ArrayList<String>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(botAnswers))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                answersList.add(line);
+        if (answersList.size() < 1) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(botAnswers))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    answersList.add(line);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return answersList.get((int) (Math.random() * answersList.size()));
     }
