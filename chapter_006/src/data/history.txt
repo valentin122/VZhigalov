@@ -1,0 +1,31 @@
+User: a
+Bot: Новая строка 4
+User: s
+Bot: Новая строка 5
+User: d
+Bot: Новая строка 5
+User: f
+Bot: Новая строка 3
+User: g
+Bot: Новая строка 4
+User: q
+Bot: Новая строка 1
+User: 1
+Bot: Новая строка 3
+User: стоп
+User: w
+User: wd
+User: saf
+User: asfd
+User: 
+User: w
+User: продолжить
+Bot: продолжаем...
+User: d
+Bot: Новая строка 1
+User: d
+Bot: Новая строка 5
+User: a
+Bot: Новая строка 1
+User: закончить
+Bot: Программа завершена. До свидания.
