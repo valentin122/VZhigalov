@@ -55,7 +55,8 @@ public class ConsoleChat {
     private void writeHistory(List<String> history) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathToHistoryFile, true))) {
             for (String line : history) {
-                writer.write(line + System.lineSeparator());
+                writer.write(line);
+                writer.newLine();
             }
             writer.flush();
         } catch (IOException e) {
