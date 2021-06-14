@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -33,7 +34,18 @@ public class Zip {
             return;
         }
         Search search = new Search();
-        List<File> files = search.files(argZip.directory(), Arrays.asList(argZip.exclude().split(",")));
+
+        Predicate<File> predicate = x -> {
+            boolean result = false;
+            for (String ext : Arrays.asList(argZip.exclude().split(","))) {
+                if (x.getName().endsWith(ext)) {
+                    result = true;
+                }
+            }
+            return result;
+        };
+
+        List<File> files = search.files(argZip.directory(), predicate);
         for (File file: files) {
             new Zip().packSingleFile(file.toPath(), new File("./chapter_006/pom.zip").toPath());
         }

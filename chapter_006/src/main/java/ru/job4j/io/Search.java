@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.function.Predicate;
 
 public class Search {
 
-    public List<File> files(String parent, List<String> exts) {
+    public List<File> files(String parent, Predicate<File> predicate) {
         List<File> result = new ArrayList<>();
         File file = new File(parent);
         Queue<File> queue = new LinkedList<>();
@@ -22,10 +23,8 @@ public class Search {
                     queue.add(f);
                 }
             } else {
-                for (String ext : exts) {
-                    if (!fileTemp.getName().endsWith(ext)) {
-                        result.add(fileTemp);
-                    }
+                if (predicate.test(file)) {
+                    result.add(fileTemp);
                 }
             }
         }

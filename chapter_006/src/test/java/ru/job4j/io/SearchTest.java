@@ -7,7 +7,9 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -32,10 +34,19 @@ public class SearchTest {
     @Test
     public void files() {
         boolean actual = false;
-        List<String> ext = new ArrayList<>();
-        ext.add(".java");
-        ext.add(".txt");
-        List<File> result = search.files(path, ext);
+        List<String> exts = new ArrayList<>();
+        exts.add(".java");
+        exts.add(".txt");
+        Predicate<File> endWith = x -> {
+            boolean result = false;
+            for (String ext : exts) {
+                if (x.getName().endsWith(ext)) {
+                    result = true;
+                }
+            }
+            return result;
+        };
+        List<File> result = search.files(path, endWith);
         for (File file : result) {
             if (file.getName().equals("test789.txt")) {
                 actual = true;
