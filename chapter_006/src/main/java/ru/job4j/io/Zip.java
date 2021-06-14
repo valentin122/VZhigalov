@@ -40,6 +40,7 @@ public class Zip {
             for (String ext : Arrays.asList(argZip.exclude().split(","))) {
                 if (x.getName().endsWith(ext)) {
                     result = true;
+                    break;
                 }
             }
             return result;
