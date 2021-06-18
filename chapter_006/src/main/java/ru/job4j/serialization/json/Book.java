@@ -1,13 +1,24 @@
 package ru.job4j.serialization.json;
 
+import javax.xml.bind.annotation.*;
 import java.util.Arrays;
 
+@XmlRootElement(name = "book")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Book {
-    private final boolean isElectronic;
-    private final int volume;
-    private final String label;
-    private final Author author;
-    private final String[] editorial;
+    @XmlAttribute
+    private boolean isElectronic;
+    @XmlAttribute
+    private int volume;
+    @XmlAttribute
+    private String label;
+    private Author author;
+    @XmlElementWrapper(name = "editorials")
+    @XmlElement(name = "editorial")
+    private String[] editorial;
+
+    public Book() {
+    }
 
     public Book(boolean isElectronic, int volume, String label, Author author, String[] editorial) {
         this.isElectronic = isElectronic;
@@ -16,6 +27,7 @@ public class Book {
         this.author = author;
         this.editorial = editorial;
     }
+
 
     @Override
     public String toString() {
