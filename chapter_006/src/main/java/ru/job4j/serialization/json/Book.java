@@ -28,6 +28,25 @@ public class Book {
         this.editorial = editorial;
     }
 
+    public boolean isElectronic() {
+        return isElectronic;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public String[] getEditorial() {
+        return editorial;
+    }
 
     @Override
     public String toString() {
