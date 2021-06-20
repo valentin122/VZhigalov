@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Book>
+    <isElectronic>false</isElectronic>
+    <volume>464</volume>
+    <label>Clean code</label>
+    <author>
+        <name>Роберт</name>
+        <surname>Мартин</surname>
+    </author>
+    <editorials>
+        <editorial>rev1</editorial>
+        <editorial>rev2</editorial>
+    </editorials>
+</Book>
